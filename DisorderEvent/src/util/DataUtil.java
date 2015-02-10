@@ -18,6 +18,7 @@ import org.processmining.mining.petrinetmining.PetriNetResult;
 import org.xml.sax.SAXException;
 
 import data.EventLog;
+import data.Trace;
 
 /**
  * Data Util
@@ -69,9 +70,9 @@ public class DataUtil {
 		LogData data = LogData.createInstance(logFile);
 		
 		for(ProcessInstance process:data.instances()){
-			LinkedList<String> trace = new LinkedList<String>();
+			Trace trace = new Trace();
 			for(AuditTrailEntry ate:process.getListOfATEs()){
-				trace.add(ate.getName());
+				trace.addEvent(ate.getName());
 			}
 			ret.addTrace(trace);
 		}

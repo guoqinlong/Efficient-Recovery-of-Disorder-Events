@@ -9,14 +9,14 @@ import java.util.LinkedList;
  *
  */
 public class EventLog {
-	LinkedList<LinkedList<String>> content;
+	LinkedList<Trace> content;
 	
 	public EventLog()
 	{
-		content = new LinkedList<LinkedList<String>>();
+		content = new LinkedList<Trace>();
 	}
 	
-	public void addTrace(LinkedList<String> trace)
+	public void addTrace(Trace trace)
 	{
 		content.add(trace);
 	}
