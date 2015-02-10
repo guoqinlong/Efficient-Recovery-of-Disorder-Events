@@ -1,5 +1,6 @@
 package data;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 
 /**
@@ -8,7 +9,7 @@ import java.util.LinkedList;
  * @author qinlongguo
  *
  */
-public class EventLog {
+public class EventLog implements Iterable<Trace>{
 	LinkedList<Trace> content;
 	
 	public EventLog()
@@ -19,5 +20,10 @@ public class EventLog {
 	public void addTrace(Trace trace)
 	{
 		content.add(trace);
+	}
+
+	@Override
+	public Iterator<Trace> iterator() {
+		return content.iterator();		
 	}
 }
