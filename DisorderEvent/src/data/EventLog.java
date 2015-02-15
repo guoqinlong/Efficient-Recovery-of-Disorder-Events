@@ -23,7 +23,23 @@ public class EventLog implements Iterable<Trace>{
 	}
 
 	@Override
-	public Iterator<Trace> iterator() {
+	public Iterator<Trace> iterator() 
+	{
 		return content.iterator();		
 	}
+	
+	@Override
+	public String toString()
+	{
+		if (content == null)
+			return null;
+		StringBuilder sb = new StringBuilder();
+		for (Trace trace	:	content)
+		{
+			sb.append(trace.toString());
+			sb.append("\n");
+		}
+		return sb.toString();
+	}
+	
 }

@@ -29,6 +29,29 @@
         <Timestamp/>
         <Originator/>
       </AuditTrailEntry>
-    </ProcessInstance>   
+    </ProcessInstance>
+　　　　<ProcessInstance id="case_1" description="">
+      <AuditTrailEntry>
+        <Data/>
+        <WorkflowModelElement>trans_3</WorkflowModelElement>
+        <EventType>complete</EventType>
+        <Timestamp/>
+        <Originator/>
+      </AuditTrailEntry>
+      <AuditTrailEntry>
+        <Data/>
+        <WorkflowModelElement>trans_0</WorkflowModelElement>
+        <EventType>complete</EventType>
+        <Timestamp/>
+        <Originator/>
+      </AuditTrailEntry>
+      <AuditTrailEntry>
+        <Data/>
+        <WorkflowModelElement>trans_1</WorkflowModelElement>
+        <EventType>complete</EventType>
+        <Timestamp/>
+        <Originator/>
+      </AuditTrailEntry>
+    </ProcessInstance>      
   </Process>
 </WorkflowLog>
