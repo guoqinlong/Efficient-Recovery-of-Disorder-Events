@@ -1,4 +1,4 @@
-package benchmark;
+package repairalgorithm.benchmark;
 
 import java.util.HashMap;
 import java.util.List;
@@ -7,23 +7,20 @@ import org.processmining.framework.models.petrinet.PetriNet;
 import org.processmining.framework.models.petrinet.Place;
 import org.processmining.framework.models.petrinet.Transition;
 
+import repairalgorithm.RepairAlgorithm;
 import util.ModelUtil;
 import data.EventLog;
 import data.Trace;
 
 /**
  * 
- * Benchmark algorithm	:	 alignment;
+ * Benchmark algorithm	:	 alignment, brute_force version;
  * 
  * @author qinlongguo
  *
  */
-public class Alignment_BruteForce {
-	
-	private static boolean isFirstTrace;
-	private static Trace bestTrace;
-	private static int bestValue;
-
+public class Alignment_BruteForce extends RepairAlgorithm {
+		
 	/**
 	 * Main method, repair the eventlog with petrinet
 	 * repair  each trace with method repairTrace
@@ -59,15 +56,6 @@ public class Alignment_BruteForce {
 		initBestTrace();
 		search(petriNet, trace, currentTrace, markings, 0,0, transitionNameMap, 0);
 		return bestTrace;
-	}
-
-	/**
-	 * initialize the best trace.
-	 */
-	private void initBestTrace() {
-		isFirstTrace = true;
-		bestTrace = null;
-		bestValue = 0;		
 	}
 
 	/**
@@ -122,22 +110,5 @@ public class Alignment_BruteForce {
 		{			
 			search(petriNet, originalTrace, currentTrace, markings, petriNetPos, retPos+1, transitionNameMap, currentValue+1);			
 		}
-	}
-	
-	/**
-	 *
-	 * check the best Trace
-	 * 
-	 * @param currentTrace
-	 * @param currentValue
-	 */
-	private void checkBestTrace(Trace currentTrace, int currentValue) {
-		if (isFirstTrace || currentValue < bestValue)
-		{
-			bestTrace = (Trace) currentTrace.clone();
-			bestValue = currentValue;
-			isFirstTrace =false;
-			return;
-		}		
 	}
 }

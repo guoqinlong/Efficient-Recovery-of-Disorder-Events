@@ -11,7 +11,7 @@ import org.processmining.framework.models.petrinet.Place;
 import org.processmining.framework.models.petrinet.Transition;
 import org.xml.sax.SAXException;
 
-import benchmark.Alignment_BruteForce;
+import repairalgorithm.benchmark.Alignment_BruteForce;
 import util.DataUtil;
 import util.ModelUtil;
 import data.EventLog;
