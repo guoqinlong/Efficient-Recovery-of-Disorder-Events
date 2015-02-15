@@ -274,18 +274,10 @@ public class Alignment_Astar extends RepairAlgorithm{
 	 * @return
 	 */
 	private List<Node> expand(Node headNode) {
-		List<Node> ret = new LinkedList<Node>();
-		List<Place> nowMarkings = headNode.markings;		
-		Transition nowTransition = headNode.getNowTransition();
-		int nowTracePos = headNode.tracePos;
-		int nowRealValue = headNode.realValue;
+		List<Node> ret = new LinkedList<Node>();			
+		Transition nowTransition = headNode.getNowTransition();		
 		List<Transition> nowFirableTransitions = headNode.getFirableTransitions();
-		Trace nowCurrentTrace = headNode.currentTrace;
-		
-		PetriNet petriNet = headNode.petriNet;
-		Trace originalTrace = headNode.originalTrace;
-		HashMap<String,Transition> transitionNameMap = headNode.transitionNameMap;
-		
+						
 		//case 1: both petriNet and trace move
 		if (nowTransition != null && nowFirableTransitions.contains(nowTransition))
 		{
@@ -294,15 +286,6 @@ public class Alignment_Astar extends RepairAlgorithm{
 			newNode.moveTrace();
 			newNode.updateFValue();
 			
-//			List<Place> newMarkings = ModelUtil.fire(petriNet, nowMarkings, nowTransition);		//markings
-//			int newRealValue = nowRealValue;																									//both move does not increase the realValue			
-//			int newTracePos = nowTracePos +1;																									//state of trace;
-//			Trace newCurrentTrace = (Trace) nowCurrentTrace.clone();														//current trace.
-//			newCurrentTrace.addEvent(nowTransition.getIdentifier());
-			
-//			int newFValue = calculateFValue(newRealValue, newTracePos, originalTrace);							//f value
-//			Node newNode = new Node(newMarkings, newFValue, newRealValue, newTracePos, newCurrentTrace, 
-//												petriNet, originalTrace, transitionNameMap);
 			ret.add(newNode);
 		}
 		//case 2: petriNet move and trace not
@@ -314,15 +297,7 @@ public class Alignment_Astar extends RepairAlgorithm{
 				newNode.fire(transition);
 				newNode.increaseRealValue();
 				newNode.updateFValue();
-//				List<Place> newMarkings = ModelUtil.fire(petriNet, nowMarkings, transition);		//markings
-//				int newRealValue = nowRealValue+1;																									//both move does not increase the realValue			
-//				int newTracePos = nowTracePos;																									//state of trace;
-//				Trace newCurrentTrace = (Trace) nowCurrentTrace.clone();														//current trace.
-//				newCurrentTrace.addEvent(transition.getIdentifier());
-//				
-//				int newFValue = calculateFValue(newRealValue, newTracePos, originalTrace);							//f value
-//				Node newNode = new Node(newMarkings, newFValue, newRealValue, newTracePos, newCurrentTrace, 
-//													petriNet, originalTrace, transitionNameMap);
+				
 				ret.add(newNode);
 			}
 		}
@@ -335,35 +310,9 @@ public class Alignment_Astar extends RepairAlgorithm{
 			newNode.increaseRealValue();
 			newNode.updateFValue();
 			
-//			List<Place> newMarkings = nowMarkings;		//markings
-//			int newRealValue = nowRealValue+1;																									//both move does not increase the realValue			
-//			int newTracePos = nowTracePos +1;																									//state of trace;
-//			Trace newCurrentTrace = nowCurrentTrace;
-//			
-//			int newFValue = calculateFValue(newRealValue, newTracePos, originalTrace);							//f value
-//			Node newNode = new Node(newMarkings, newFValue, newRealValue, newTracePos, newCurrentTrace, 
-//												petriNet, originalTrace, transitionNameMap);
 			ret.add(newNode);
 		}
 		return ret;
 	}
 
-	/**
-	 * calculate the fValue
-	 * @param newRealValue
-	 * @param newTracePos
-	 * @param originalTrace
-	 * @return
-	 */
-	private int calculateFValue(int newRealValue, int newTracePos, Trace originalTrace) {
-		int gValue;
-		int hValue;
-		int fValue;
-		
-		gValue = newRealValue + newTracePos;		
-		hValue = originalTrace.length() - newTracePos;
-		
-		fValue = gValue + hValue;
-		return fValue;		
-	}
 }
