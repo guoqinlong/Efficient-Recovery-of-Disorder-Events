@@ -1,12 +1,10 @@
 package repairalgorithm.benchmark;
 
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.PriorityQueue;
 
 import org.processmining.framework.models.petrinet.PetriNet;
 import org.processmining.framework.models.petrinet.Place;
@@ -24,7 +22,7 @@ import data.Trace;
  * @author qinlongguo
  *
  */
-class Node implements Comparable
+class Node implements Comparable<Node>
 {
 	//==search state==
 	List<Place> markings;		//state of PetriNet	
@@ -102,9 +100,8 @@ class Node implements Comparable
 	}
 	
 	@Override
-	public int compareTo(Object o) 
-	{
-		Node n = (Node) o;
+	public int compareTo(Node n) 
+	{		
 		return (int) Math.signum(this.fValue-n.fValue);		
 	}
 	
@@ -207,6 +204,7 @@ public class Alignment_Astar extends RepairAlgorithm{
 		HashMap<String,Transition> transitionNameMap= ModelUtil.getTransitionNameMap(petriNet);
 		
 		Node sourceNode = new Node(petriNet, trace, transitionNameMap);
+		sourceNode.sourceNode();
 		LinkedList<Node> openTable = new LinkedList<Node>();	//OPEN table
 		openTable.add(sourceNode);
 		HashSet<Node> closeTable = new HashSet<Node>();															//ClOSE table				
