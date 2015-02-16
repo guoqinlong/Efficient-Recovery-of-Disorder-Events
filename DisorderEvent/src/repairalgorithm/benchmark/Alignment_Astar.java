@@ -212,6 +212,8 @@ public class Alignment_Astar extends RepairAlgorithm{
 		while (openTable.size() > 0)
 		{
 			Node headNode = openTable.poll();
+			if (!isFirstTrace && headNode.realValue > bestValue)															//In case of dead-loop. As long as the current real value has exceed the best Value, discard it. 
+				continue;
 			if (headNode.completeRepiar())
 			{
 				updateRepair(headNode);
