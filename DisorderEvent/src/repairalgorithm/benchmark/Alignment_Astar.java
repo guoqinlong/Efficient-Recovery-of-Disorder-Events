@@ -254,8 +254,9 @@ public class Alignment_Astar extends RepairAlgorithm{
 	private void updateRepair(Node headNode) {
 		if (isFirstTrace || bestValue > headNode.realValue)
 		{
-			bestValue = headNode.fValue;
-			bestTrace= (Trace) headNode.currentTrace.clone();			
+			bestValue = headNode.realValue;
+			bestTrace= (Trace) headNode.currentTrace.clone();
+			isFirstTrace = false;
 		}		
 	}
 
@@ -291,6 +292,8 @@ public class Alignment_Astar extends RepairAlgorithm{
 		{
 			for(Transition transition	:	nowFirableTransitions)
 			{				
+				if (transition.equals(nowTransition))
+					continue;
 				Node newNode = headNode.clone();
 				newNode.fire(transition);
 				newNode.increaseRealValue();
