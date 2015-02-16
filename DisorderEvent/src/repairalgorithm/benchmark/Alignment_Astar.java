@@ -7,162 +7,15 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.processmining.framework.models.petrinet.PetriNet;
-import org.processmining.framework.models.petrinet.Place;
 import org.processmining.framework.models.petrinet.Transition;
 
 import repairalgorithm.RepairAlgorithm;
+import repairalgorithm.SearchNode;
 import util.ModelUtil;
 import data.EventLog;
 import data.Trace;
 
-/**
- * 
- * Node in the search tree.
- * 
- * @author qinlongguo
- *
- */
-class Node implements Comparable<Node>
-{
-	//==search state==
-	List<Place> markings;		//state of PetriNet	
-	int fValue;							//f value		:	estimated value
-	int realValue;						//real value	:	namely the value of how many change
-	int tracePos;						//state of trace;
-	Trace currentTrace;			//current trace.
-	
-	//==search background==
-	PetriNet petriNet;
-	Trace originalTrace;
-	HashMap<String,Transition> transitionNameMap;
-	
-	
-	/**
-	 * construct a new Node with all information provided
-	 * @param markings
-	 * @param fValue
-	 * @param tracePos
-	 * @param currentTrace
-	 * @param petriNet
-	 * @param originalTrace
-	 * @param transitionNameMap
-	 */
-	public Node(List<Place> markings, int fValue, int realValue, int tracePos, Trace currentTrace, 
-			PetriNet petriNet, Trace originalTrace, HashMap<String, Transition> transitionNameMap)
-	{
-		this.markings = markings;
-		this.fValue = fValue;
-		this.realValue = realValue;
-		this.tracePos = tracePos;
-		this.currentTrace = currentTrace;
-		
-		this.petriNet = petriNet;
-		this.originalTrace = originalTrace;
-		this.transitionNameMap = transitionNameMap;
-				
-	}
-	
-	/**
-	 *  construct a new blank Node as a  node.
-	 * @param petriNet
-	 */
-	public Node(PetriNet petriNet, Trace originalTrace, HashMap<String,Transition> transitionNameMap)
-	{				
-		initializeState();
-		this.petriNet = petriNet;
-		this.originalTrace= originalTrace;
-		this.transitionNameMap = transitionNameMap;
-	}
-	
-	public void initializeState()
-	{
-		markings = new LinkedList<Place>();
-		fValue = 0;
-		realValue = 0;
-		tracePos = 0;
-		currentTrace = new Trace();
-	}
-	
-	/**
-	 * make this node as SourceNode;
-	 * 1.initialize the search state
-	 * 2.add the markings.
-	 */
-	public void sourceNode()
-	{
-		initializeState();
-		markings = ModelUtil.getIntialMarking(petriNet);
-	}
-	
-	public List<Transition> getFirableTransitions()
-	{
-		return ModelUtil.getFirableTransitions(petriNet, markings);
-	}
-	
-	@Override
-	public int compareTo(Node n) 
-	{		
-		return (int) Math.signum(this.fValue-n.fValue);		
-	}
-	
-	public Transition getNowTransition()
-	{
-		String eventName = originalTrace.getEvent(tracePos);
-		if (eventName == null)
-			return null;
-		Transition ret = transitionNameMap.get(eventName);
-		return ret;
-	}
-	
-	@Override
-	public Node clone()
-	{
-		Node ret = new Node(this.petriNet, this.originalTrace, this.transitionNameMap);
-		ret.markings = new LinkedList<Place>(this.markings);
-		ret.fValue = this.fValue;
-		ret.realValue = this.realValue;
-		ret.tracePos = this.tracePos;
-		ret.currentTrace =(Trace) this.currentTrace.clone();
-		return ret;
-	}
-	
-	/**
-	 * to check whether the node represents a complete repair, namely the firable transition is empty
-	 * @return
-	 */
-	public boolean completeRepiar() 
-	{
-		List<Transition> firableTransitions = getFirableTransitions();
-		return (firableTransitions.size() == 0);
-	}
 
-	/**
-	 * 
-	 * Fire a transition in the node
-	 * 
-	 * @param nowTransition
-	 */
-	public void fire(Transition nowTransition) {
-		markings =ModelUtil.fire(petriNet, markings, nowTransition);
-		currentTrace.addEvent(nowTransition.getIdentifier());
-	}
-
-	public void moveTrace() {
-		tracePos++;		
-	}
-
-	public void updateFValue() {				
-		int gValue = realValue + tracePos;		
-		int hValue = originalTrace.length() - tracePos;
-		
-		fValue = gValue + hValue;
-	}
-
-	public void increaseRealValue() {
-		realValue++;		
-	}
-	
-}
 
 /**
  * 
@@ -203,31 +56,31 @@ public class Alignment_Astar extends RepairAlgorithm{
 		initBestTrace();
 		HashMap<String,Transition> transitionNameMap= ModelUtil.getTransitionNameMap(petriNet);
 		
-		Node sourceNode = new Node(petriNet, trace, transitionNameMap);
+		SearchNode sourceNode = new SearchNode(petriNet, trace, transitionNameMap);
 		sourceNode.sourceNode();
-		LinkedList<Node> openTable = new LinkedList<Node>();	//OPEN table
+		LinkedList<SearchNode> openTable = new LinkedList<SearchNode>();	//OPEN table
 		openTable.add(sourceNode);
-		HashSet<Node> closeTable = new HashSet<Node>();															//ClOSE table				
+		HashSet<SearchNode> closeTable = new HashSet<SearchNode>();															//ClOSE table				
 		
 		while (openTable.size() > 0)
 		{
-			Node headNode = openTable.poll();
-			if (!isFirstTrace && headNode.realValue > bestValue)															//In case of dead-loop. As long as the current real value has exceed the best Value, discard it. 
+			SearchNode headNode = openTable.poll();
+			if (!isFirstTrace && headNode.getRealValue() > bestValue)															//In case of dead-loop. As long as the current real value has exceed the best Value, discard it. 
 				continue;
 			if (headNode.completeRepiar())
 			{
 				updateRepair(headNode);
 				continue;
 			}
-			List<Node> childNodes = expand(headNode);
-			for (Node childNode	:	childNodes)
+			List<SearchNode> childNodes = expand(headNode);
+			for (SearchNode childNode	:	childNodes)
 			{
 				//evaluate the f of childNode
 				if (openTable.contains(childNode))
 				{
 					int originalPos = openTable.indexOf(childNode);
-					Node originalNode = openTable.get(originalPos);
-					if (originalNode.fValue > childNode.fValue)
+					SearchNode originalNode = openTable.get(originalPos);
+					if (originalNode.getfValue() > childNode.getfValue())
 					{
 						openTable.remove(originalPos);
 						openTable.add(childNode);
@@ -253,11 +106,11 @@ public class Alignment_Astar extends RepairAlgorithm{
 	 * 
 	 * @param headNode
 	 */
-	private void updateRepair(Node headNode) {
-		if (isFirstTrace || bestValue > headNode.realValue)
+	private void updateRepair(SearchNode headNode) {
+		if (isFirstTrace || bestValue > headNode.getRealValue())
 		{
-			bestValue = headNode.realValue;
-			bestTrace= (Trace) headNode.currentTrace.clone();
+			bestValue = headNode.getRealValue();
+			bestTrace= (Trace) headNode.getCurrentTrace().clone();
 			isFirstTrace = false;
 		}		
 	}
@@ -274,15 +127,15 @@ public class Alignment_Astar extends RepairAlgorithm{
 	 * @param headNode
 	 * @return
 	 */
-	private List<Node> expand(Node headNode) {
-		List<Node> ret = new LinkedList<Node>();			
+	private List<SearchNode> expand(SearchNode headNode) {
+		List<SearchNode> ret = new LinkedList<SearchNode>();			
 		Transition nowTransition = headNode.getNowTransition();		
 		List<Transition> nowFirableTransitions = headNode.getFirableTransitions();
 						
 		//case 1: both petriNet and trace move
 		if (nowTransition != null && nowFirableTransitions.contains(nowTransition))
 		{
-			Node newNode = headNode.clone();
+			SearchNode newNode = headNode.clone();
 			newNode.fire(nowTransition);
 			newNode.moveTrace();
 			newNode.updateFValue();
@@ -296,7 +149,7 @@ public class Alignment_Astar extends RepairAlgorithm{
 			{				
 				if (transition.equals(nowTransition))
 					continue;
-				Node newNode = headNode.clone();
+				SearchNode newNode = headNode.clone();
 				newNode.fire(transition);
 				newNode.increaseRealValue();
 				newNode.updateFValue();
@@ -308,7 +161,7 @@ public class Alignment_Astar extends RepairAlgorithm{
 		if (nowTransition != null)
 		{
 			
-			Node newNode = headNode.clone();
+			SearchNode newNode = headNode.clone();
 			newNode.moveTrace();
 			newNode.increaseRealValue();
 			newNode.updateFValue();
