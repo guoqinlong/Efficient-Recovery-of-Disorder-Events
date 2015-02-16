@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
-<pnml>
+<?xml version="1.0" encoding="ISO-8859-1"?><pnml>
 <net id="Net-One" type="P/T net">
+<token id="Default" enabled="true" red="0" green="0" blue="0"/>
 <place id="P4">
 <graphics>
-<position x="5.0" y="45.0"/>
+<position x="0.0" y="45.0"/>
 </graphics>
 <name>
 <value>P4</value>
@@ -12,7 +12,7 @@
 </graphics>
 </name>
 <initialMarking>
-<value>0</value>
+<value>Default,0</value>
 <graphics>
 <offset x="0.0" y="0.0"/>
 </graphics>
@@ -32,7 +32,7 @@
 </graphics>
 </name>
 <initialMarking>
-<value>0</value>
+<value>Default,0</value>
 <graphics>
 <offset x="0.0" y="0.0"/>
 </graphics>
@@ -52,7 +52,7 @@
 </graphics>
 </name>
 <initialMarking>
-<value>0</value>
+<value>Default,0</value>
 <graphics>
 <offset x="0.0" y="0.0"/>
 </graphics>
@@ -72,7 +72,7 @@
 </graphics>
 </name>
 <initialMarking>
-<value>0</value>
+<value>Default,0</value>
 <graphics>
 <offset x="0.0" y="0.0"/>
 </graphics>
@@ -92,7 +92,7 @@
 </graphics>
 </name>
 <initialMarking>
-<value>0</value>
+<value>Default,0</value>
 <graphics>
 <offset x="0.0" y="0.0"/>
 </graphics>
@@ -112,7 +112,7 @@
 </graphics>
 </name>
 <initialMarking>
-<value>0</value>
+<value>Default,0</value>
 <graphics>
 <offset x="0.0" y="0.0"/>
 </graphics>
@@ -228,7 +228,7 @@
 <arc id="arc_2" source="trans_0" target="place_0">
 <graphics/>
 <inscription>
-<value>1</value>
+<value>Default,1</value>
 <graphics/>
 </inscription>
 <tagged>
@@ -241,7 +241,7 @@
 <arc id="arc_3" source="place_2" target="trans_0">
 <graphics/>
 <inscription>
-<value>1</value>
+<value>Default,1</value>
 <graphics/>
 </inscription>
 <tagged>
@@ -254,7 +254,7 @@
 <arc id="arc_6" source="place_3" target="trans_2">
 <graphics/>
 <inscription>
-<value>1</value>
+<value>Default,1</value>
 <graphics/>
 </inscription>
 <tagged>
@@ -267,20 +267,20 @@
 <arc id="P4 to T3" source="P4" target="T3">
 <graphics/>
 <inscription>
-<value>1</value>
+<value>Default,1</value>
 <graphics/>
 </inscription>
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="31" y="57" curvePoint="false"/>
+<arcpath id="000" x="26" y="57" curvePoint="false"/>
 <arcpath id="001" x="51" y="57" curvePoint="false"/>
 <type value="normal"/>
 </arc>
 <arc id="P5 to T4" source="P5" target="T4">
 <graphics/>
 <inscription>
-<value>1</value>
+<value>Default,1</value>
 <graphics/>
 </inscription>
 <tagged>
@@ -293,7 +293,7 @@
 <arc id="place_0 to T4" source="place_0" target="T4">
 <graphics/>
 <inscription>
-<value>1</value>
+<value>Default,1</value>
 <graphics/>
 </inscription>
 <tagged>
@@ -306,7 +306,7 @@
 <arc id="T3 to place_2" source="T3" target="place_2">
 <graphics/>
 <inscription>
-<value>1</value>
+<value>Default,1</value>
 <graphics/>
 </inscription>
 <tagged>
@@ -319,7 +319,7 @@
 <arc id="T3 to place_3" source="T3" target="place_3">
 <graphics/>
 <inscription>
-<value>1</value>
+<value>Default,1</value>
 <graphics/>
 </inscription>
 <tagged>
@@ -332,7 +332,7 @@
 <arc id="T4 to P6" source="T4" target="P6">
 <graphics/>
 <inscription>
-<value>1</value>
+<value>Default,1</value>
 <graphics/>
 </inscription>
 <tagged>
@@ -345,7 +345,7 @@
 <arc id="trans_2 to P5" source="trans_2" target="P5">
 <graphics/>
 <inscription>
-<value>1</value>
+<value>Default,1</value>
 <graphics/>
 </inscription>
 <tagged>

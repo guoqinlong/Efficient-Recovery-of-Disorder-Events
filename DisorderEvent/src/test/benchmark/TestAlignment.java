@@ -29,8 +29,8 @@ public class TestAlignment {
 	 */
 	public static void testRepair() throws IOException, ParserConfigurationException, SAXException
 	{
-		String petriNetFilePath ="data/model/Simselect1.pnml";
-		String eventLogFilePath ="data/log/Simselect1.mxml";
+		String petriNetFilePath ="data/model/Shortloop1.pnml";
+		String eventLogFilePath ="data/log/Shortloop1.mxml";
 		PetriNet petriNet = DataUtil.getPetriNetFromFilePath(petriNetFilePath);
 		EventLog eventLog = DataUtil.getEventLogFromFilePath(eventLogFilePath);
 		Alignment_Astar alignment = new Alignment_Astar();
