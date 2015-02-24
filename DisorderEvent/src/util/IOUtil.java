@@ -24,7 +24,7 @@ import data.Trace;
  * @author qinlongguo
  * 
  */
-public class DataUtil {
+public class IOUtil {
 	
 	/**
 	 * Get PetriNet from InputStream

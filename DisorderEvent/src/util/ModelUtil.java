@@ -100,5 +100,17 @@ public class ModelUtil {
 		}				
 		return ret;
 	}
+
+	/**
+	 * On this markings,  whether the execution of petrinet is finished
+	 * @param markings
+	 * @param petriNet
+	 * @return
+	 */
+	public static boolean isFinished(List<Place> markings, PetriNet petriNet) {
+		List<Transition> firableTransitions = ModelUtil.getFirableTransitions(petriNet, markings);
+		Place sinkPlace = (Place) petriNet.getSink();
+		return (firableTransitions.isEmpty() && markings.contains(sinkPlace));		
+	}
 	
 }

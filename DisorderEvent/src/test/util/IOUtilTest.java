@@ -8,7 +8,7 @@ import org.processmining.framework.models.petrinet.PetriNet;
 import org.xml.sax.SAXException;
 
 import data.EventLog;
-import util.DataUtil;
+import util.IOUtil;
 
 /**
  * 
@@ -16,7 +16,7 @@ import util.DataUtil;
  * @author qinlongguo
  *
  */
-public class DataUtilTest {
+public class IOUtilTest {
 	
 	/**
 	 * Test for method getPetriNetFromFilePath
@@ -26,7 +26,7 @@ public class DataUtilTest {
 		String filePath = "data/model/Simselect1.pnml";
 		PetriNet ret = null;
 		try {
-			ret = DataUtil.getPetriNetFromFilePath(filePath);
+			ret = IOUtil.getPetriNetFromFilePath(filePath);
 		} catch (IOException e) {			
 			e.printStackTrace();
 		}
@@ -41,7 +41,7 @@ public class DataUtilTest {
 		String filePath = "data/log/Simselect1.mxml";
 		EventLog ret = null;
 		try {
-			ret = DataUtil.getEventLogFromFilePath(filePath);
+			ret = IOUtil.getEventLogFromFilePath(filePath);
 		} catch (IOException | ParserConfigurationException | SAXException e) {			
 			e.printStackTrace();
 		}

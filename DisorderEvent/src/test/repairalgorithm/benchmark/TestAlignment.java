@@ -1,4 +1,4 @@
-package test.benchmark;
+package test.repairalgorithm.benchmark;
 
 import java.io.IOException;
 
@@ -9,7 +9,7 @@ import org.xml.sax.SAXException;
 
 import repairalgorithm.benchmark.Alignment_Astar;
 import repairalgorithm.benchmark.Alignment_BruteForce;
-import util.DataUtil;
+import util.IOUtil;
 import data.EventLog;
 
 /**
@@ -31,8 +31,8 @@ public class TestAlignment {
 	{
 		String petriNetFilePath ="data/model/Shortloop1.pnml";
 		String eventLogFilePath ="data/log/Shortloop1.mxml";
-		PetriNet petriNet = DataUtil.getPetriNetFromFilePath(petriNetFilePath);
-		EventLog eventLog = DataUtil.getEventLogFromFilePath(eventLogFilePath);
+		PetriNet petriNet = IOUtil.getPetriNetFromFilePath(petriNetFilePath);
+		EventLog eventLog = IOUtil.getEventLogFromFilePath(eventLogFilePath);
 		Alignment_Astar alignment = new Alignment_Astar();
 		
 		EventLog retEventLog = alignment.repair(petriNet, eventLog);

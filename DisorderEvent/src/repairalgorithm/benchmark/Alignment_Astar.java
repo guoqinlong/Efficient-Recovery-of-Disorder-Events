@@ -106,7 +106,7 @@ public class Alignment_Astar extends RepairAlgorithm{
 	 * 
 	 * @param headNode
 	 */
-	private void updateRepair(SearchNode headNode) {
+	protected void updateRepair(SearchNode headNode) {
 		if (isFirstTrace || bestValue > headNode.getRealValue())
 		{
 			bestValue = headNode.getRealValue();
@@ -127,7 +127,7 @@ public class Alignment_Astar extends RepairAlgorithm{
 	 * @param headNode
 	 * @return
 	 */
-	private List<SearchNode> expand(SearchNode headNode) {
+	protected List<SearchNode> expand(SearchNode headNode) {
 		List<SearchNode> ret = new LinkedList<SearchNode>();			
 		Transition nowTransition = headNode.getNowTransition();		
 		List<Transition> nowFirableTransitions = headNode.getFirableTransitions();
