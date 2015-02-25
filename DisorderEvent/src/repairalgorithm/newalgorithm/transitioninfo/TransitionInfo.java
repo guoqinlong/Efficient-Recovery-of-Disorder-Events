@@ -466,4 +466,24 @@ public class TransitionInfo
 		return ret.toString();		
 	}
 
+	public HashSet<Transition> getMustFollowTransition() { return mustFollowTransition; }
+
+	public void setMustFollowTransition(HashSet<Transition> mustFollowTransition) { this.mustFollowTransition = mustFollowTransition; }
+
+	public HashSet<Transition> getMayFollowTransition() { return mayFollowTransition; }
+
+	public void setMayFollowTransition(HashSet<Transition> mayFollowTransition) { this.mayFollowTransition = mayFollowTransition; }
+
+	public HashMap<Transition, List<Transition>> getPreSet() { return preSet; }
+
+	public void setPreSet(HashMap<Transition, List<Transition>> preSet) { this.preSet = preSet; }
+
+	public boolean isInLoop() { return isInLoop; }
+
+	public void setInLoop(boolean isInLoop) { this.isInLoop = isInLoop; }
+
+	public boolean isToEnd() { return isToEnd; }
+
+	public void setToEnd(boolean isToEnd) { this.isToEnd = isToEnd; }
+
 }

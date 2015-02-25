@@ -21,17 +21,17 @@ import data.Trace;
 public class SearchNode implements Comparable<SearchNode>
 {
 	//==search state==
-	List<Place> markings;		//state of PetriNet	
-	int fValue;							//f value		:	estimated value
-	int realValue;						//real value	:	namely the value of how many change
+	protected List<Place> markings;		//state of PetriNet	
+	protected int fValue;							//f value		:	estimated value
+	protected int realValue;						//real value	:	namely the value of how many change
 
-	int tracePos;						//state of trace;
-	Trace currentTrace;			//current trace.
+	protected int tracePos;						//state of trace;
+	protected Trace currentTrace;			//current trace.
 	
 	//==search background==
-	PetriNet petriNet;
-	Trace originalTrace;
-	HashMap<String,Transition> transitionNameMap;
+	protected PetriNet petriNet;
+	protected Trace originalTrace;
+	public HashMap<String,Transition> transitionNameMap;
 	
 	
 	/**
@@ -159,6 +159,36 @@ public class SearchNode implements Comparable<SearchNode>
 		realValue++;		
 	}
 
+	public String toString()
+	{
+		StringBuilder ret = new StringBuilder();
+		
+		ret.append("markings\t:\t");
+		ret.append(markings.toString());
+		ret.append("\n");
+		
+		ret.append("fValue\t:\t");
+		ret.append(fValue);
+		ret.append("\n");
+				
+		ret.append("realValue\t:\t");
+		ret.append(realValue);
+		ret.append("\n");
+				
+		ret.append("tracePos\t:\t");
+		ret.append(tracePos);
+		ret.append("\n");
+				
+		ret.append("currentTrace\t:\t");
+		ret.append(currentTrace.toString());
+		ret.append("\n");				
+				
+		ret.append("originalTrace\t:\t");
+		ret.append(originalTrace.toString());
+		ret.append("\n");					
+		return ret.toString();
+	}
+	
 	public int getRealValue() { return realValue; }
 	public void setRealValue(int realValue) { 	this.realValue = realValue; }
 

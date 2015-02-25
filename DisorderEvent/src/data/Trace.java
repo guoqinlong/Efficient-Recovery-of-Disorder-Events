@@ -22,6 +22,11 @@ public class Trace {
 	{		
 		return traceContent.size();
 	}
+	
+	public int indexOf(String event, int beginPos)
+	{
+		return traceContent.subList(beginPos+1, length()).indexOf(event) + beginPos + 1; 
+	}
 
 	public String getEvent(int i) 
 	{

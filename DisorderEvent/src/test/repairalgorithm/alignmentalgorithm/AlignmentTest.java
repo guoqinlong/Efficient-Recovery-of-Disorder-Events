@@ -1,4 +1,4 @@
-package test.repairalgorithm.benchmark;
+package test.repairalgorithm.alignmentalgorithm;
 
 import java.io.IOException;
 
@@ -7,8 +7,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.processmining.framework.models.petrinet.PetriNet;
 import org.xml.sax.SAXException;
 
-import repairalgorithm.benchmark.Alignment_Astar;
-import repairalgorithm.benchmark.Alignment_BruteForce;
+import repairalgorithm.alignmentalgorithm.Alignment_Astar;
 import util.IOUtil;
 import data.EventLog;
 
@@ -19,7 +18,7 @@ import data.EventLog;
  * @author qinlongguo
  *
  */
-public class TestAlignment {
+public class AlignmentTest {
 
 	/**
 	 * Test for repair method

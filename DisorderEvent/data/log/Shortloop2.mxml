@@ -29,6 +29,13 @@
         <Timestamp/>
         <Originator/>
       </AuditTrailEntry>
+    　　<AuditTrailEntry>
+        <Data/>
+        <WorkflowModelElement>T5</WorkflowModelElement>
+        <EventType>complete</EventType>
+        <Timestamp/>
+        <Originator/>
+      </AuditTrailEntry>
       <AuditTrailEntry>
         <Data/>
         <WorkflowModelElement>T4</WorkflowModelElement>
