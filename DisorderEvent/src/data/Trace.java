@@ -1,13 +1,14 @@
 package data;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
 
 import org.processmining.framework.models.petrinet.Transition;
 
-public class Trace {
+public class Trace implements Iterable<String> {
 	LinkedList<String> traceContent;
-	
+
 	public Trace()
 	{
 		traceContent = new LinkedList<String>();
@@ -72,4 +73,15 @@ public class Trace {
 		sb.append(']');
 		return sb.toString();
 	}
+	
+	@Override
+	public Iterator<String> iterator() 
+	{		
+		return traceContent.iterator();
+	}
+	
+	public LinkedList<String> getTraceContent() { return traceContent; }
+
+	public void setTraceContent(LinkedList<String> traceContent) { this.traceContent = traceContent; }
+
 }

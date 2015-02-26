@@ -41,5 +41,9 @@ public class EventLog implements Iterable<Trace>{
 		}
 		return sb.toString();
 	}
+
+	public int size() {		
+		return content.size();
+	}
 	
 }

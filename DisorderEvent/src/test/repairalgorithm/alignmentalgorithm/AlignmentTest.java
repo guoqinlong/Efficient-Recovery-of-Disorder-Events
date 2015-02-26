@@ -1,6 +1,7 @@
 package test.repairalgorithm.alignmentalgorithm;
 
 import java.io.IOException;
+import java.util.Date;
 
 import javax.xml.parsers.ParserConfigurationException;
 
@@ -31,9 +32,8 @@ public class AlignmentTest {
 		String petriNetFilePath ="data/model/Shortloop1.pnml";
 		String eventLogFilePath ="data/log/Shortloop1.mxml";
 		PetriNet petriNet = IOUtil.getPetriNetFromFilePath(petriNetFilePath);
-		EventLog eventLog = IOUtil.getEventLogFromFilePath(eventLogFilePath);
-		Alignment_Astar alignment = new Alignment_Astar();
-		
+		EventLog eventLog = IOUtil.getEventLogFromFilePath(eventLogFilePath);		
+		Alignment_Astar alignment = new Alignment_Astar();			
 		EventLog retEventLog = alignment.repair(petriNet, eventLog);
 		System.out.println(retEventLog.toString());
 	}
