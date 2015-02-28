@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 
 import org.processmining.framework.models.petrinet.PetriNet;
 import org.processmining.framework.models.petrinet.Place;
