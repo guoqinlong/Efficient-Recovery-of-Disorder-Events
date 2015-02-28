@@ -1,5 +1,6 @@
 package repairalgorithm.newalgorithm;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -8,9 +9,6 @@ import java.util.List;
 import org.processmining.framework.models.petrinet.PetriNet;
 import org.processmining.framework.models.petrinet.Place;
 import org.processmining.framework.models.petrinet.Transition;
-
-import com.google.common.collect.HashMultiset;
-import com.google.common.collect.Multiset;
 
 import data.Trace;
 import repairalgorithm.SearchNode;
@@ -26,12 +24,12 @@ import repairalgorithm.newalgorithm.transitioninfo.TransitionInfo;
  *
  */
 public class NewAlgorithmSearchNode extends SearchNode {
-	Multiset<String> unusedTransitions;
+	MultiSet<String> unusedTransitions;
 	
 	public NewAlgorithmSearchNode(PetriNet petriNet, Trace originalTrace,
 			HashMap<String, Transition> transitionNameMap) {
-		super(petriNet, originalTrace, transitionNameMap);
-		unusedTransitions = HashMultiset.create();
+		super(petriNet, originalTrace, transitionNameMap);		
+		unusedTransitions = new MultiSet<String>();		
 	}
 	
 	public NewAlgorithmSearchNode clone()
@@ -42,7 +40,7 @@ public class NewAlgorithmSearchNode extends SearchNode {
 		ret.realValue = this.realValue;
 		ret.tracePos = this.tracePos;
 		ret.currentTrace =(Trace) this.currentTrace.clone();
-		ret.unusedTransitions = HashMultiset.create(this.unusedTransitions);
+		ret.unusedTransitions = (MultiSet<String>) this.unusedTransitions.clone();
 		return ret;
 	}
 
@@ -53,7 +51,7 @@ public class NewAlgorithmSearchNode extends SearchNode {
 			HashMap<Transition, TransitionInfo> transitionInfo) 
 	{
 		String nowTransitionName = nowTransition.getIdentifier();
-		Multiset<String> leftTransitions = getLeftTransitions();
+		MultiSet<String> leftTransitions = getLeftTransitions();
 		TransitionInfo info = transitionInfo.get(nowTransition);
 
 		//Prune 1 : nowTransition should be in the leftTransitions.
@@ -93,8 +91,8 @@ public class NewAlgorithmSearchNode extends SearchNode {
 	 * get all the transitions which have not been matched with petri net.
 	 * @return
 	 */
-	private Multiset<String> getLeftTransitions() {
-		Multiset<String> ret = HashMultiset.create();
+	private MultiSet<String> getLeftTransitions() {
+		MultiSet<String> ret = new MultiSet<String>();
 		ret.addAll(unusedTransitions);
 		for (int i=tracePos; i<originalTrace.length(); i++)		
 		{
@@ -152,7 +150,7 @@ public class NewAlgorithmSearchNode extends SearchNode {
 	@Override
 	public boolean completeRepiar()
 	{
-		Multiset<String> leftTransitions = getLeftTransitions();
-		return (leftTransitions.size() == 0);
+		MultiSet<String> leftTransitions = getLeftTransitions();
+		return leftTransitions.isEmpty();
 	}
 }

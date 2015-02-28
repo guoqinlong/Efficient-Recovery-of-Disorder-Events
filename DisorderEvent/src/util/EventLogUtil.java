@@ -106,4 +106,23 @@ public class EventLogUtil {
 		return 1.0*match / length;
 	}
 
+	/**
+	 * 
+	 * duplicate the event log
+	 * 
+	 * @param eventLog
+	 * @param i
+	 * @return
+	 */
+	public static EventLog duplicate(EventLog eventLog, int coefficient) {
+		EventLog ret = new EventLog();
+		for (Trace trace	:	eventLog)
+		{
+			Trace newTrace = (Trace) trace.clone();
+			for (int i=0; i<coefficient; i++)
+				ret.addTrace(newTrace);
+		}
+		return ret;
+	}
+
 }

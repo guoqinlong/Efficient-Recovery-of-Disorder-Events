@@ -12,6 +12,8 @@ import org.xml.sax.SAXException;
 
 import benchmark.data.BenchmarkResult;
 import repairalgorithm.RepairAlgorithm;
+import repairalgorithm.alignmentalgorithm.Alignment_Astar;
+import repairalgorithm.newalgorithm.NewAlgorithm;
 import data.EventLog;
 import data.Trace;
 import util.EventLogUtil;
@@ -33,8 +35,6 @@ public class Benchmark {
 	static String className[] = {"repairalgorithm.alignmentalgorithm.Alignment_Astar",
 												"repairalgorithm.newalgorithm.NewAlgorithm"
 			};
-	static String modelFolderName = "model";
-	static String logFolderName = "log";
 	
 	public static void test(RepairAlgorithm repairAlgorithm, String modelFolder, String logFolder) throws IOException, ParserConfigurationException, SAXException
 	{
@@ -59,6 +59,22 @@ public class Benchmark {
 		}
 	}
 	
+	
+	private static void testSingleFile(RepairAlgorithm repairAlgorithm,
+			String modelPath, String  eventLogPath) throws ParserConfigurationException, SAXException, IOException {
+		PetriNet petriNet = IOUtil.getPetriNetFromFilePath(modelPath);
+		EventLog eventLog = IOUtil.getEventLogFromFilePath(eventLogPath);
+		for (int i=1; i<2; i=i*10)
+		{
+			eventLog = EventLogUtil.duplicate(eventLog, i);
+			EventLog wrongEventLog = EventLogUtil.disorder(eventLog);
+			BenchmarkResult result = test(repairAlgorithm, petriNet,eventLog,wrongEventLog);
+			System.out.println(petriNet.getName()+"\t:");
+			System.out.println(result.toString());
+		}
+	}
+		 
+	
    /**
     * test single event log
     */
@@ -72,6 +88,14 @@ public class Benchmark {
 		float accuracy = EventLogUtil.calcuateAccuracy(repairedEventLog, eventLog);
 		result.setAccuracy(accuracy);
 		return result;
+	}
+	
+	public static void main(String agrs[]) throws IOException, ParserConfigurationException, SAXException
+	{
+	    RepairAlgorithm  repairAlgorithm =new NewAlgorithm();
+		String modelFile = "data/model/Simsequence1.pnml";
+		String logFile = "data/log/Simsequence1.mxml";
+		testSingleFile(repairAlgorithm,modelFile, logFile);
 	}
 
 }

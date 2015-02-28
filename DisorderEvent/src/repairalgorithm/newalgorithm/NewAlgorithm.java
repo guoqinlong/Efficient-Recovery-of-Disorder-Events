@@ -1,5 +1,6 @@
 package repairalgorithm.newalgorithm;
 
+import java.util.Date;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -17,19 +18,18 @@ import util.ModelUtil;
 
 public class NewAlgorithm extends Alignment_Astar{
 	
-	
-
 	public Trace repairTrace(PetriNet petriNet, Trace originalTrace, HashMap<Transition, TransitionInfo> transitionInfo) 
 	{
-		initBestTrace();
+
+		initBestTrace();		
 		HashMap<String,Transition> transitionNameMap= ModelUtil.getTransitionNameMap(petriNet);
-		
 		NewAlgorithmSearchNode sourceNode = new NewAlgorithmSearchNode(petriNet, originalTrace, transitionNameMap);
+
+	
 		sourceNode.sourceNode();
 		LinkedList<NewAlgorithmSearchNode> openTable = new LinkedList<NewAlgorithmSearchNode>();	//OPEN table
 		openTable.add(sourceNode);
-		HashSet<NewAlgorithmSearchNode> closeTable = new HashSet<NewAlgorithmSearchNode>();															//ClOSE table				
-		
+		HashSet<NewAlgorithmSearchNode> closeTable = new HashSet<NewAlgorithmSearchNode>();															//ClOSE table						
 		while (openTable.size() > 0)
 		{
 			NewAlgorithmSearchNode headNode = openTable.poll();
@@ -61,12 +61,13 @@ public class NewAlgorithm extends Alignment_Astar{
 				}							
 				else
 				{
-					openTable.add(childNode);
+					openTable.add(childNode);					
 				}
 			}
 			closeTable.add(headNode);
 			Collections.sort(openTable);
-		}		
+		}
+		
 		return bestTrace;
 	}
 
@@ -77,15 +78,19 @@ public class NewAlgorithm extends Alignment_Astar{
 		 * @param eventLog
 		 * @return
 		 */
+	    @Override
 		public EventLog repair(PetriNet petriNet, EventLog eventLog)
 		{
 			EventLog ret = new EventLog();
+			Date d1 = new Date();
 			HashMap<Transition, TransitionInfo> transitionInfo = TransitionInfo.calculateTransitionInfos(petriNet);
+			Date d2 = new Date();
+			//System.out.println("prepareTime:\t"+(d2.getTime() - d1.getTime()));
 			for (Trace originalTrace	:	eventLog)
-			{
-				Trace repairedTrace;
-				repairedTrace = repairTrace(petriNet, originalTrace, transitionInfo);
-				ret.addTrace(repairedTrace);
+			{				
+				Trace repairedTrace;				
+				repairedTrace = repairTrace(petriNet, originalTrace, transitionInfo);				
+				ret.addTrace(repairedTrace);								
 			}
 			return ret;
 		}	
