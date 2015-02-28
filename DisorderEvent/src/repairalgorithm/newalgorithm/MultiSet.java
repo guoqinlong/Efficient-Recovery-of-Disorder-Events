@@ -62,7 +62,15 @@ public class MultiSet<T> implements Collection<T> {
 
 	@Override
 	public boolean remove(Object o) {
-		throw new UnsupportedOperationException();
+		Integer value = this.content.get(o);
+		if (value == null)
+			return false;
+		value--;
+		if (value<=0)
+			this.content.remove(o);
+		else
+			this.content.put((T)o, value);
+		return true;
 	}
 
 	@Override

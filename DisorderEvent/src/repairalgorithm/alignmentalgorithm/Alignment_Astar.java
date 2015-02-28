@@ -96,8 +96,8 @@ public class Alignment_Astar extends RepairAlgorithm{
 				}
 			}
 			closeTable.add(headNode);
-			Collections.sort(openTable);
-		}		
+			Collections.sort(openTable);			
+		}				
 		return bestTrace;
 	}
 

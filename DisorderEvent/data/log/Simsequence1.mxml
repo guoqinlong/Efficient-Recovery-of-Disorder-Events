@@ -10,7 +10,7 @@
     <ProcessInstance id="case_0" description="">
       <AuditTrailEntry>
         <Data/>
-        <WorkflowModelElement>trans_3</WorkflowModelElement>
+        <WorkflowModelElement>trans_0</WorkflowModelElement>
         <EventType>complete</EventType>
         <Timestamp/>
         <Originator/>
@@ -24,7 +24,7 @@
       </AuditTrailEntry>
       <AuditTrailEntry>
         <Data/>
-        <WorkflowModelElement>trans_0</WorkflowModelElement>
+        <WorkflowModelElement>trans_3</WorkflowModelElement>
         <EventType>complete</EventType>
         <Timestamp/>
         <Originator/>

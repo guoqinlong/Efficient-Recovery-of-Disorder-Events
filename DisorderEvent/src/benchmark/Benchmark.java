@@ -64,14 +64,14 @@ public class Benchmark {
 			String modelPath, String  eventLogPath) throws ParserConfigurationException, SAXException, IOException {
 		PetriNet petriNet = IOUtil.getPetriNetFromFilePath(modelPath);
 		EventLog eventLog = IOUtil.getEventLogFromFilePath(eventLogPath);
-		for (int i=1; i<2; i=i*10)
-		{
-			eventLog = EventLogUtil.duplicate(eventLog, i);
-			EventLog wrongEventLog = EventLogUtil.disorder(eventLog);
-			BenchmarkResult result = test(repairAlgorithm, petriNet,eventLog,wrongEventLog);
-			System.out.println(petriNet.getName()+"\t:");
-			System.out.println(result.toString());
-		}
+//		for (int i=10; i<12; i=i*10)
+//		{
+		eventLog = EventLogUtil.duplicate(eventLog, 1);
+		EventLog wrongEventLog = EventLogUtil.disorder(eventLog);
+		BenchmarkResult result = test(repairAlgorithm, petriNet,eventLog,wrongEventLog);
+		System.out.println(petriNet.getName()+"\t:");
+		System.out.println(result.toString());
+//		}
 	}
 		 
 	
@@ -92,9 +92,9 @@ public class Benchmark {
 	
 	public static void main(String agrs[]) throws IOException, ParserConfigurationException, SAXException
 	{
-	    RepairAlgorithm  repairAlgorithm =new NewAlgorithm();
-		String modelFile = "data/model/Simsequence1.pnml";
-		String logFile = "data/log/Simsequence1.mxml";
+	    RepairAlgorithm  repairAlgorithm =new Alignment_Astar();
+		String modelFile = "data/model/Simpara2.pnml";
+		String logFile = "data/log/Simpara2.mxml";
 		testSingleFile(repairAlgorithm,modelFile, logFile);
 	}
 
