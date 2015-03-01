@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.processmining.framework.log.LogEvent;
 import org.processmining.framework.models.ModelGraphVertex;
 import org.processmining.framework.models.petrinet.PetriNet;
 import org.processmining.framework.models.petrinet.Place;
@@ -113,4 +114,19 @@ public class ModelUtil {
 		return (firableTransitions.isEmpty() && markings.contains(sinkPlace));		
 	}
 	
+	
+	/**
+	 * make the transions in the petrinet visible.
+	 * @return
+	 */
+	public static PetriNet makedTransitionVisible(PetriNet pn)
+	{
+		PetriNet ret = (PetriNet) pn.clone();
+		for (Transition t	:	ret.getTransitions())
+		{
+			LogEvent le = new LogEvent(t.getIdentifier(), null);
+			t.setLogEvent(le);
+		}
+		return ret;
+	}
 }

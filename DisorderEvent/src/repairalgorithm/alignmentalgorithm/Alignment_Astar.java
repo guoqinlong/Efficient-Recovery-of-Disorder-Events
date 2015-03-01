@@ -124,6 +124,9 @@ public class Alignment_Astar extends RepairAlgorithm{
 	 * 2. petriNet move while trace not.
 	 * 3. trace move while petriNet not.
 	 * 
+	 * special case for invisible task:
+	 * when petriNet move, we should consider for the invisible task.
+	 * 
 	 * @param headNode
 	 * @return
 	 */
@@ -132,7 +135,7 @@ public class Alignment_Astar extends RepairAlgorithm{
 		Transition nowTransition = headNode.getNowTransition();		
 		List<Transition> nowFirableTransitions = headNode.getFirableTransitions();
 						
-		//case 1: both petriNet and trace move
+		//case 1: both petriNet and trace move, the nowtransition means it would not be the invisible task.
 		if (nowTransition != null && nowFirableTransitions.contains(nowTransition))
 		{
 			SearchNode newNode = headNode.clone();

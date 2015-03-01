@@ -43,11 +43,11 @@
             <dimension x="43" y="17" />
         </graphics>
         <name>
-            <text>trans_3</text>
+            <text>trans_0</text>
          </name>
         <toolspecific tool="ProM" version="5.2">
             <logevent>
-                <name>trans_3</name>
+                <name>trans_0</name>
                 <type>auto</type>
             </logevent>
         </toolspecific>
@@ -55,21 +55,6 @@
     <transition id="trans_1">
         <graphics>
             <position  x="169" y="52" />
-            <dimension x="43" y="17" />
-        </graphics>
-        <name>
-            <text>trans_2</text>
-         </name>
-        <toolspecific tool="ProM" version="5.2">
-            <logevent>
-                <name>trans_2</name>
-                <type>auto</type>
-            </logevent>
-        </toolspecific>
-    </transition>
-    <transition id="trans_2">
-        <graphics>
-            <position  x="169" y="18" />
             <dimension x="43" y="17" />
         </graphics>
         <name>
@@ -82,17 +67,28 @@
             </logevent>
         </toolspecific>
     </transition>
+    <transition id="trans_2">
+        <graphics>
+            <position  x="169" y="18" />
+            <dimension x="43" y="17" />
+        </graphics>
+        <name>
+            <text>trans_2</text>
+         </name>
+        <toolspecific tool="ProM" version="5.2">
+        </toolspecific>
+    </transition>
     <transition id="trans_3">
         <graphics>
             <position  x="271" y="35" />
             <dimension x="43" y="17" />
         </graphics>
         <name>
-            <text>trans_0</text>
+            <text>trans_3</text>
          </name>
         <toolspecific tool="ProM" version="5.2">
             <logevent>
-                <name>trans_0</name>
+                <name>trans_3</name>
                 <type>auto</type>
             </logevent>
         </toolspecific>

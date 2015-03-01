@@ -1,5 +1,6 @@
 package test.util;
 
+import java.io.File;
 import java.io.IOException;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -9,6 +10,7 @@ import org.xml.sax.SAXException;
 
 import data.EventLog;
 import util.IOUtil;
+import util.ModelUtil;
 
 /**
  * 
@@ -47,9 +49,27 @@ public class IOUtilTest {
 		}
 		System.out.println(ret);
 	}
-
-	public static void main(String args[])
+	
+	/**
+	 * make the petri net visible
+	 * @param folderPath
+	 * @throws IOException 
+	 */
+	public static void makePetriNetVisible(String folderPath) throws IOException
 	{
-		testGetEventLogFromFilePath();
+		File folder = new File(folderPath);
+		File[] files = folder.listFiles();
+		for(File file	:	files)
+		{
+			String filePath = file.getAbsolutePath();
+			PetriNet pn = IOUtil.getPetriNetFromFilePath(filePath);
+			PetriNet newPN = ModelUtil.makedTransitionVisible(pn);
+			IOUtil.savePetriNetToFile(filePath+"1", pn);
+		}
+	}
+
+	public static void main(String args[]) throws IOException
+	{
+		makePetriNetVisible("data/model");
 	}
 }

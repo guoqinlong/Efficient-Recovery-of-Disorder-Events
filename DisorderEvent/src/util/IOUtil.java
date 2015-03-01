@@ -1,20 +1,29 @@
 package util;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.util.LinkedList;
 import java.util.List;
 
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.processmining.exporting.petrinet.PnmlExport;
 import org.processmining.framework.log.AuditTrailEntry;
 import org.processmining.framework.log.LogFile;
 import org.processmining.framework.log.ProcessInstance;
 import org.processmining.framework.log.rfb.LogData;
 import org.processmining.framework.models.petrinet.PetriNet;
+import org.processmining.framework.models.petrinet.algorithms.PnmlWriter;
+import org.processmining.framework.plugin.ProvidedObject;
 import org.processmining.importing.pnml.PnmlImport;
+import org.processmining.mining.MiningResult;
 import org.processmining.mining.petrinetmining.PetriNetResult;
 import org.xml.sax.SAXException;
 
@@ -119,6 +128,31 @@ public class IOUtil {
 			ret.add(eventLog);
 		}
 		return ret;
+	}
+	
+	/**
+	 * save the petrinet into the file with path.
+	 * @param filePath
+	 * @param pn
+	 * @throws IOException 
+	 */
+	public static void savePetriNetToFile(String filePath, PetriNet petriNet) throws IOException
+	{
+		FileOutputStream fos = new FileOutputStream(filePath);
+		savePetriNetToStream(fos, petriNet);
+	}
+	
+	/**
+	 * save the petrinet into the file with
+	 * 
+	 * @param os
+	 * @param pn
+	 * @throws IOException 
+	 */
+	public static void savePetriNetToStream(OutputStream os, PetriNet petriNet) throws IOException
+	{
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(os));		
+		PnmlWriter.write(false, true, petriNet, bw);
 	}
 	
 }
