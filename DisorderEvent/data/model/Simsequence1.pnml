@@ -109,36 +109,10 @@
 </transition>
 <transition id="trans_1">
 <graphics>
-<position x="225.0" y="150.0"/>
+<position x="225.0" y="120.0"/>
 </graphics>
 <name>
 <value>trans_1</value>
-<graphics>
-<offset x="0.0" y="0.0"/>
-</graphics>
-</name>
-<orientation>
-<value>0</value>
-</orientation>
-<rate>
-<value>1.0</value>
-</rate>
-<timed>
-<value>false</value>
-</timed>
-<infiniteServer>
-<value>false</value>
-</infiniteServer>
-<priority>
-<value>1</value>
-</priority>
-</transition>
-<transition id="trans_2">
-<graphics>
-<position x="225.0" y="105.0"/>
-</graphics>
-<name>
-<value>trans_2</value>
 <graphics>
 <offset x="0.0" y="0.0"/>
 </graphics>
@@ -207,21 +181,8 @@
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="310" y="137" curvePoint="false"/>
+<arcpath id="000" x="311" y="132" curvePoint="false"/>
 <arcpath id="001" x="336" y="132" curvePoint="false"/>
-<type value="normal"/>
-</arc>
-<arc id="arc_2" source="place_0" target="trans_2">
-<graphics/>
-<inscription>
-<value/>
-<graphics/>
-</inscription>
-<tagged>
-<value>false</value>
-</tagged>
-<arcpath id="000" x="206" y="132" curvePoint="false"/>
-<arcpath id="001" x="231" y="117" curvePoint="false"/>
 <type value="normal"/>
 </arc>
 <arc id="arc_3" source="place_0" target="trans_1">
@@ -233,8 +194,8 @@
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="201" y="143" curvePoint="false"/>
-<arcpath id="001" x="231" y="162" curvePoint="false"/>
+<arcpath id="000" x="206" y="132" curvePoint="false"/>
+<arcpath id="001" x="231" y="132" curvePoint="false"/>
 <type value="normal"/>
 </arc>
 <arc id="arc_4" source="trans_0" target="place_0">
@@ -259,21 +220,8 @@
 <tagged>
 <value>false</value>
 </tagged>
-<arcpath id="000" x="241" y="162" curvePoint="false"/>
-<arcpath id="001" x="283" y="139" curvePoint="false"/>
-<type value="normal"/>
-</arc>
-<arc id="arc_6" source="trans_2" target="place_3">
-<graphics/>
-<inscription>
-<value/>
-<graphics/>
-</inscription>
-<tagged>
-<value>false</value>
-</tagged>
-<arcpath id="000" x="241" y="117" curvePoint="false"/>
-<arcpath id="001" x="282" y="128" curvePoint="false"/>
+<arcpath id="000" x="241" y="132" curvePoint="false"/>
+<arcpath id="001" x="282" y="132" curvePoint="false"/>
 <type value="normal"/>
 </arc>
 <arc id="arc_7" source="place_1" target="trans_0">

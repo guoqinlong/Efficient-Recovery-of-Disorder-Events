@@ -1,5 +1,6 @@
 package data;
 
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
 
@@ -40,6 +41,10 @@ public class EventLog implements Iterable<Trace>{
 			sb.append("\n");
 		}
 		return sb.toString();
+	}
+
+	public int size() {		
+		return content.size();
 	}
 	
 }

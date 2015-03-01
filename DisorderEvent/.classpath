@@ -8,5 +8,6 @@
 	<classpathentry kind="lib" path="lib/ProM.jar"/>
 	<classpathentry kind="lib" path="lib/att.jar"/>
 	<classpathentry kind="lib" path="lib/colt.jar"/>
+	<classpathentry kind="lib" path="lib/guava-18.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

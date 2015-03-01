@@ -10,30 +10,35 @@
     <ProcessInstance id="case_0" description="">
       <AuditTrailEntry>
         <Data/>
-        <WorkflowModelElement>trans_3</WorkflowModelElement>
+        <WorkflowModelElement>T3</WorkflowModelElement>
         <EventType>complete</EventType>
         <Timestamp/>
         <Originator/>
       </AuditTrailEntry>
       <AuditTrailEntry>
         <Data/>
-        <WorkflowModelElement>trans_1</WorkflowModelElement>
+        <WorkflowModelElement>T4</WorkflowModelElement>
         <EventType>complete</EventType>
         <Timestamp/>
         <Originator/>
       </AuditTrailEntry>
       <AuditTrailEntry>
         <Data/>
-        <WorkflowModelElement>trans_0</WorkflowModelElement>
+        <WorkflowModelElement>T5</WorkflowModelElement>
         <EventType>complete</EventType>
         <Timestamp/>
         <Originator/>
       </AuditTrailEntry>
-    </ProcessInstance>
-　　　　<ProcessInstance id="case_1" description="">
       <AuditTrailEntry>
         <Data/>
-        <WorkflowModelElement>trans_0</WorkflowModelElement>
+        <WorkflowModelElement>T6</WorkflowModelElement>
+        <EventType>complete</EventType>
+        <Timestamp/>
+        <Originator/>
+      </AuditTrailEntry>
+      <AuditTrailEntry>
+        <Data/>
+        <WorkflowModelElement>T7</WorkflowModelElement>
         <EventType>complete</EventType>
         <Timestamp/>
         <Originator/>
@@ -47,11 +52,11 @@
       </AuditTrailEntry>
       <AuditTrailEntry>
         <Data/>
-        <WorkflowModelElement>trans_3</WorkflowModelElement>
+        <WorkflowModelElement>trans_0</WorkflowModelElement>
         <EventType>complete</EventType>
         <Timestamp/>
         <Originator/>
       </AuditTrailEntry>
-    </ProcessInstance>      
+    </ProcessInstance>
   </Process>
 </WorkflowLog>

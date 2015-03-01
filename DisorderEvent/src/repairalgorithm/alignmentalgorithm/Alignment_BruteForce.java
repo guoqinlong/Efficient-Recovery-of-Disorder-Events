@@ -1,4 +1,4 @@
-package repairalgorithm.benchmark;
+package repairalgorithm.alignmentalgorithm;
 
 import java.util.HashMap;
 import java.util.List;

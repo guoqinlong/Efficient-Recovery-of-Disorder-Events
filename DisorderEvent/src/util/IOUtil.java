@@ -1,8 +1,11 @@
 package util;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.xml.parsers.ParserConfigurationException;
 
@@ -24,7 +27,7 @@ import data.Trace;
  * @author qinlongguo
  * 
  */
-public class DataUtil {
+public class IOUtil {
 	
 	/**
 	 * Get PetriNet from InputStream
@@ -77,6 +80,45 @@ public class DataUtil {
 		
 		return ret;
 	}
-	
 
+	/**
+	 * Get Petri Nets from FolderPath
+	 * @param is
+	 * @return
+	 * @throws IOException
+	 */
+	public static List<PetriNet> getPetriNetsFromFolderPath(String modelFolder) throws IOException {
+		List<PetriNet> ret = new LinkedList<PetriNet>();
+		File folderFile = new File(modelFolder);
+		File[] files = folderFile.listFiles();
+		for (File file	:	files)
+		{
+			String filePath= file.getAbsolutePath();
+			PetriNet petriNet = getPetriNetFromFilePath(filePath);
+			ret.add(petriNet);
+		}
+		return ret;
+	}
+	
+	/**
+	 * Get Tracess from FolderPath
+	 * @param is
+	 * @return
+	 * @throws SAXException 
+	 * @throws ParserConfigurationException 
+	 * @throws IOException
+	 */
+	public static List<EventLog> getEventLogsFromFolderPath(String logFolder) throws ParserConfigurationException, SAXException, IOException {
+		List<EventLog> ret = new LinkedList<EventLog>();
+		File folderFile = new File(logFolder);
+		File[] files = folderFile.listFiles();
+		for (File file	:	files)
+		{
+			String filePath= file.getAbsolutePath();
+			EventLog eventLog = getEventLogFromFilePath(filePath);
+			ret.add(eventLog);
+		}
+		return ret;
+	}
+	
 }
