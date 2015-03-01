@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.processmining.framework.log.LogEvent;
 import org.processmining.framework.models.petrinet.PetriNet;
 import org.processmining.framework.models.petrinet.Place;
 import org.processmining.framework.models.petrinet.Transition;
@@ -83,6 +84,12 @@ public class TransitionInfo
 		HashMap<Transition, TransitionInfo> ret = new HashMap<Transition, TransitionInfo>();
 		for (Transition t	:	petriNet.getTransitions())
 		{
+			if (!t.getIdentifier().equals("T2"))
+			{
+				LogEvent le = new LogEvent(t.getIdentifier(), null);
+				t.setLogEvent(le);
+			}
+			System.out.println(t.getIdentifier()+"\t"+t.isInvisibleTask());
 			TransitionInfo info = new TransitionInfo();
 			ret.put(t,info);
 		}				

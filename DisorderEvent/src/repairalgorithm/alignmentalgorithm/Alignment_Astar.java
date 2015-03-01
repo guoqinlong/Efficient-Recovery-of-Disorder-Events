@@ -159,13 +159,11 @@ public class Alignment_Astar extends RepairAlgorithm{
 		}
 		//case 3: petriNet not move, trace move
 		if (nowTransition != null)
-		{
-			
+		{			
 			SearchNode newNode = headNode.clone();
 			newNode.moveTrace();
 			newNode.increaseRealValue();
-			newNode.updateFValue();
-			
+			newNode.updateFValue();			
 			ret.add(newNode);
 		}
 		return ret;

@@ -92,9 +92,9 @@ public class Benchmark {
 	
 	public static void main(String agrs[]) throws IOException, ParserConfigurationException, SAXException
 	{
-	    RepairAlgorithm  repairAlgorithm =new Alignment_Astar();
-		String modelFile = "data/model/Simpara2.pnml";
-		String logFile = "data/log/Simpara2.mxml";
+	    RepairAlgorithm  repairAlgorithm =new NewAlgorithm();
+		String modelFile = "data/model/InvTask1.pnml";
+		String logFile = "data/log/InvTask1.mxml";
 		testSingleFile(repairAlgorithm,modelFile, logFile);
 	}
 

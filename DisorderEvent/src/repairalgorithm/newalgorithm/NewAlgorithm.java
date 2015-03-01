@@ -23,8 +23,7 @@ public class NewAlgorithm extends Alignment_Astar{
 
 		initBestTrace();		
 		HashMap<String,Transition> transitionNameMap= ModelUtil.getTransitionNameMap(petriNet);
-		NewAlgorithmSearchNode sourceNode = new NewAlgorithmSearchNode(petriNet, originalTrace, transitionNameMap);
-
+ 		NewAlgorithmSearchNode sourceNode = new NewAlgorithmSearchNode(petriNet, originalTrace, transitionNameMap);
 	
 		sourceNode.sourceNode();
 		LinkedList<NewAlgorithmSearchNode> openTable = new LinkedList<NewAlgorithmSearchNode>();	//OPEN table

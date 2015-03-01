@@ -46,6 +46,7 @@ public class NewAlgorithmSearchNode extends SearchNode {
 
 	/**
 	 *  check whether the transition is ok to fire
+	 *  update for the invisible task
 	 */
 	public boolean isOktoFire(Transition nowTransition,
 			HashMap<Transition, TransitionInfo> transitionInfo) 
@@ -55,35 +56,43 @@ public class NewAlgorithmSearchNode extends SearchNode {
 		TransitionInfo info = transitionInfo.get(nowTransition);
 
 		//Prune 1 : nowTransition should be in the leftTransitions.
-		if (!leftTransitions.contains(nowTransitionName))
+		//--->for invisible task, it may be not in the leftTransitions.
+		if (!leftTransitions.contains(nowTransitionName) && !nowTransition.isInvisibleTask())
 			return false;
 		
 		//Prune 2 : nowTransition.mustFollowTransitions should be in the leftTransitions.
+		//--->for must follow task, the invisible task may be not in the leftTransitions.
 		HashSet<Transition> mustFollowTransitions = info.getMustFollowTransition();
 		for (Transition t	:	mustFollowTransitions)
 		{
+			if (t.isInvisibleTask())
+				continue;
 			String name = t.getIdentifier();
 			if (!leftTransitions.contains(name))
 				return false;				
 		}
 		
 		//Prune 3: for leftTransitions,  if it is in the preSet, the pres should also in the leftTransitions.
+		//--->for invisible task, it cannot be in theleftTransitions.
 		HashMap<Transition, List<Transition>> preSet = info.getPreSet();
 		for (String	transitionName	:	leftTransitions)
 		{
 			Transition leftTransition = transitionNameMap.get(transitionName);
+			if (leftTransition.isInvisibleTask())
+				continue;
 			List<Transition> preTransitions = preSet.get(leftTransition);
 			if (preTransitions != null)
 			{
 				for (Transition preTransition	:	preTransitions)
 				{
+					if (preTransition.isInvisibleTask())
+						continue;
 					String preTransitionName = preTransition.getIdentifier();
 					if (!leftTransitions.contains(preTransitionName))
 						return false;
 				}
 			}
-		}
-				
+		}				
 		return true;
 	}
 
@@ -106,11 +115,16 @@ public class NewAlgorithmSearchNode extends SearchNode {
 	 * the trace should move according to this transition, there are 3 case:
 	 * 1. the transition is in the unusedTransitions, just move it.
 	 * 2. the transition is at trace pos, just move trace.
-	 * 3. the transition is after trace pos, move the trace pos, and add the within transitions in the leftNodes. 
+	 * 3. the transition is after trace pos, move the trace pos, and add the within transitions in the leftNodes.
+	 * 
+	 *  special case for invisible task: invisible task should affect the left transitions...
+	 *  
 	 * @param transition
 	 */
 	public void updateTrace(Transition transition) 
 	{
+		if (transition.isInvisibleTask())
+			return;
 		String transitionName = transition.getIdentifier();
 		if (unusedTransitions.contains(transitionName))
 		{

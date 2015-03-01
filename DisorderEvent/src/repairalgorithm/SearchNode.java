@@ -136,16 +136,24 @@ public class SearchNode implements Comparable<SearchNode>
 	/**
 	 * 
 	 * Fire a transition in the node
+	 * Special: for invisible task, it should not added into the current trace
 	 * 
 	 * @param nowTransition
 	 */
 	public void fire(Transition nowTransition) {
 		markings =ModelUtil.fire(petriNet, markings, nowTransition);
-		currentTrace.addEvent(nowTransition.getIdentifier());
+		if(!nowTransition.isInvisibleTask())
+			currentTrace.addEvent(nowTransition.getIdentifier());
 	}
 
-	public void moveTrace() {
-		tracePos++;		
+	/**
+	 * 
+	 * update only for non-invisible task, the trace should move.
+	 * 
+	 * @param isInvisibleTask
+	 */
+	public void moveTrace() {		
+			tracePos++;		
 	}
 
 	public void updateFValue() {				
