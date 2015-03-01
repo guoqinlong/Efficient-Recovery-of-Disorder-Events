@@ -1,6 +1,7 @@
 package repairalgorithm.alignmentalgorithm;
 
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -10,6 +11,7 @@ import org.processmining.framework.models.petrinet.PetriNet;
 import org.processmining.framework.models.petrinet.Transition;
 
 import repairalgorithm.RepairAlgorithm;
+import repairalgorithm.RepairResult;
 import repairalgorithm.SearchNode;
 import util.ModelUtil;
 import data.EventLog;
@@ -33,16 +35,22 @@ public class Alignment_Astar extends RepairAlgorithm{
 	 * @param eventLog
 	 * @return
 	 */
-	public EventLog repair(PetriNet petriNet, EventLog eventLog)
+	public RepairResult repair(PetriNet petriNet, EventLog eventLog)
 	{
+		RepairResult result = new RepairResult();
 		EventLog ret = new EventLog();
+		HashMap<String,Transition> transitionNameMap= ModelUtil.getTransitionNameMap(petriNet);
+		Date d1 = new Date();
 		for (Trace originalTrace	:	eventLog)
 		{
 			Trace repairedTrace;
-			repairedTrace = repairTrace(petriNet, originalTrace);
+			repairedTrace = repairTrace(petriNet, originalTrace, transitionNameMap);
 			ret.addTrace(repairedTrace);
 		}
-		return ret;
+		Date d2 = new Date();
+		result.setEventLog(ret);
+		result.setTime(d2.getTime() - d1.getTime());
+		return result;
 	}	
 	
 	/**
@@ -51,10 +59,9 @@ public class Alignment_Astar extends RepairAlgorithm{
 	 * @param trace
 	 * @return
 	 */
-	public Trace repairTrace(PetriNet petriNet, Trace trace)
+	public Trace repairTrace(PetriNet petriNet, Trace trace, HashMap<String,Transition> transitionNameMap )
 	{								
 		initBestTrace();
-		HashMap<String,Transition> transitionNameMap= ModelUtil.getTransitionNameMap(petriNet);
 		
 		SearchNode sourceNode = new SearchNode(petriNet, trace, transitionNameMap);
 		sourceNode.sourceNode();
@@ -98,6 +105,8 @@ public class Alignment_Astar extends RepairAlgorithm{
 			closeTable.add(headNode);
 			Collections.sort(openTable);			
 		}				
+		//System.out.println("CloseTable Size:\t"+closeTable.size());
+		//System.out.println(closeTable);
 		return bestTrace;
 	}
 

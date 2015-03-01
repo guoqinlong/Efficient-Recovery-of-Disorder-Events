@@ -44,5 +44,5 @@ public abstract  class RepairAlgorithm {
 	 * @param eventLog
 	 * @return
 	 */
-	public abstract EventLog repair(PetriNet petriNet, EventLog eventLog);	
+	public abstract RepairResult repair(PetriNet petriNet, EventLog eventLog);	
 }

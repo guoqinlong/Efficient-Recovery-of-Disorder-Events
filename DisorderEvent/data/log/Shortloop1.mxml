@@ -24,13 +24,6 @@
       </AuditTrailEntry>
       <AuditTrailEntry>
         <Data/>
-        <WorkflowModelElement>T3</WorkflowModelElement>
-        <EventType>complete</EventType>
-        <Timestamp/>
-        <Originator/>
-      </AuditTrailEntry>
-      <AuditTrailEntry>
-        <Data/>
         <WorkflowModelElement>T4</WorkflowModelElement>
         <EventType>complete</EventType>
         <Timestamp/>
@@ -39,6 +32,13 @@
       <AuditTrailEntry>
         <Data/>
         <WorkflowModelElement>T1</WorkflowModelElement>
+        <EventType>complete</EventType>
+        <Timestamp/>
+        <Originator/>
+      </AuditTrailEntry>
+      <AuditTrailEntry>
+        <Data/>
+        <WorkflowModelElement>T3</WorkflowModelElement>
         <EventType>complete</EventType>
         <Timestamp/>
         <Originator/>
@@ -54,14 +54,14 @@
       </AuditTrailEntry>
       <AuditTrailEntry>
         <Data/>
-        <WorkflowModelElement>T3</WorkflowModelElement>
+        <WorkflowModelElement>T1</WorkflowModelElement>
         <EventType>complete</EventType>
         <Timestamp/>
         <Originator/>
       </AuditTrailEntry>
       <AuditTrailEntry>
         <Data/>
-        <WorkflowModelElement>T1</WorkflowModelElement>
+        <WorkflowModelElement>T3</WorkflowModelElement>
         <EventType>complete</EventType>
         <Timestamp/>
         <Originator/>

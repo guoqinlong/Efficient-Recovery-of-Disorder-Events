@@ -1,5 +1,6 @@
 package repairalgorithm.alignmentalgorithm;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -8,6 +9,7 @@ import org.processmining.framework.models.petrinet.Place;
 import org.processmining.framework.models.petrinet.Transition;
 
 import repairalgorithm.RepairAlgorithm;
+import repairalgorithm.RepairResult;
 import util.ModelUtil;
 import data.EventLog;
 import data.Trace;
@@ -28,16 +30,21 @@ public class Alignment_BruteForce extends RepairAlgorithm {
 	 * @param eventLog
 	 * @return
 	 */
-	public EventLog repair(PetriNet petriNet, EventLog eventLog)
+	public RepairResult repair(PetriNet petriNet, EventLog eventLog)
 	{
+		RepairResult result = new RepairResult();
 		EventLog ret = new EventLog();
+		Date d1 = new Date();
 		for (Trace originalTrace	:	eventLog)
 		{
 			Trace repairedTrace;
 			repairedTrace = repairTrace(petriNet, originalTrace);
 			ret.addTrace(repairedTrace);
 		}
-		return ret;
+		Date d2 = new Date();
+		result.setTime(d2.getTime() - d1.getTime());
+		result.setEventLog(ret);
+		return result;
 	}	
 	
 	/**

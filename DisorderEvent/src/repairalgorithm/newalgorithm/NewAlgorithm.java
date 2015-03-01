@@ -12,17 +12,17 @@ import org.processmining.framework.models.petrinet.Transition;
 
 import data.EventLog;
 import data.Trace;
+import repairalgorithm.RepairResult;
 import repairalgorithm.alignmentalgorithm.Alignment_Astar;
 import repairalgorithm.newalgorithm.transitioninfo.TransitionInfo;
 import util.ModelUtil;
 
 public class NewAlgorithm extends Alignment_Astar{
 	
-	public Trace repairTrace(PetriNet petriNet, Trace originalTrace, HashMap<Transition, TransitionInfo> transitionInfo) 
+	public Trace repairTrace(PetriNet petriNet, Trace originalTrace, HashMap<Transition, TransitionInfo> transitionInfo, HashMap<String,Transition> transitionNameMap) 
 	{
 
-		initBestTrace();		
-		HashMap<String,Transition> transitionNameMap= ModelUtil.getTransitionNameMap(petriNet);
+		initBestTrace();				
  		NewAlgorithmSearchNode sourceNode = new NewAlgorithmSearchNode(petriNet, originalTrace, transitionNameMap);
 	
 		sourceNode.sourceNode();
@@ -63,10 +63,10 @@ public class NewAlgorithm extends Alignment_Astar{
 					openTable.add(childNode);					
 				}
 			}
-			closeTable.add(headNode);
+			closeTable.add(headNode);			
 			Collections.sort(openTable);
 		}
-		
+//		System.out.println("CloseTable Size:\t"+closeTable.size());
 		return bestTrace;
 	}
 
@@ -78,20 +78,24 @@ public class NewAlgorithm extends Alignment_Astar{
 		 * @return
 		 */
 	    @Override
-		public EventLog repair(PetriNet petriNet, EventLog eventLog)
+		public RepairResult repair(PetriNet petriNet, EventLog eventLog)
 		{
+	    	RepairResult result = new RepairResult();
 			EventLog ret = new EventLog();
+			
+			HashMap<Transition, TransitionInfo> transitionInfo = TransitionInfo.calculateTransitionInfos(petriNet);						
+			HashMap<String,Transition> transitionNameMap= ModelUtil.getTransitionNameMap(petriNet);
 			Date d1 = new Date();
-			HashMap<Transition, TransitionInfo> transitionInfo = TransitionInfo.calculateTransitionInfos(petriNet);
-			Date d2 = new Date();
-			//System.out.println("prepareTime:\t"+(d2.getTime() - d1.getTime()));
 			for (Trace originalTrace	:	eventLog)
 			{				
 				Trace repairedTrace;				
-				repairedTrace = repairTrace(petriNet, originalTrace, transitionInfo);				
+				repairedTrace = repairTrace(petriNet, originalTrace, transitionInfo, transitionNameMap);				
 				ret.addTrace(repairedTrace);								
 			}
-			return ret;
+			Date d2 = new Date();
+			result.setTime(d2.getTime()-d1.getTime());
+			result.setEventLog(ret);
+			return result;
 		}	
 
 		/**

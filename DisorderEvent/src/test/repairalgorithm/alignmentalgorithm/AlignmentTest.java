@@ -34,7 +34,7 @@ public class AlignmentTest {
 		PetriNet petriNet = IOUtil.getPetriNetFromFilePath(petriNetFilePath);
 		EventLog eventLog = IOUtil.getEventLogFromFilePath(eventLogFilePath);		
 		Alignment_Astar alignment = new Alignment_Astar();			
-		EventLog retEventLog = alignment.repair(petriNet, eventLog);
+		EventLog retEventLog = alignment.repair(petriNet, eventLog).getEventLog();
 		System.out.println(retEventLog.toString());
 	}
 	

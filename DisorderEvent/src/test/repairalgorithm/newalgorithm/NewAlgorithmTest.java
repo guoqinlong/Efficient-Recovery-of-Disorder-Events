@@ -27,7 +27,7 @@ public class NewAlgorithmTest {
 		EventLog eventLog = IOUtil.getEventLogFromFilePath(eventLogFilePath);
 		NewAlgorithm alignment = new NewAlgorithm();
 		
-		EventLog retEventLog = alignment.repair(petriNet, eventLog);
+		EventLog retEventLog = alignment.repair(petriNet, eventLog).getEventLog();
 		System.out.println(retEventLog.toString());
 	}
 		

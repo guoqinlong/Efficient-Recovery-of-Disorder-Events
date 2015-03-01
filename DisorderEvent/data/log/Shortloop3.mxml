@@ -24,14 +24,7 @@
       </AuditTrailEntry>
       <AuditTrailEntry>
         <Data/>
-        <WorkflowModelElement>C</WorkflowModelElement>
-        <EventType>complete</EventType>
-        <Timestamp/>
-        <Originator/>
-      </AuditTrailEntry>
-    　　<AuditTrailEntry>
-        <Data/>
-        <WorkflowModelElement>E</WorkflowModelElement>
+        <WorkflowModelElement>F</WorkflowModelElement>
         <EventType>complete</EventType>
         <Timestamp/>
         <Originator/>
@@ -45,7 +38,14 @@
       </AuditTrailEntry>
       <AuditTrailEntry>
         <Data/>
-        <WorkflowModelElement>F</WorkflowModelElement>
+        <WorkflowModelElement>C</WorkflowModelElement>
+        <EventType>complete</EventType>
+        <Timestamp/>
+        <Originator/>
+      </AuditTrailEntry>
+    　　<AuditTrailEntry>
+        <Data/>
+        <WorkflowModelElement>E</WorkflowModelElement>
         <EventType>complete</EventType>
         <Timestamp/>
         <Originator/>
@@ -98,27 +98,6 @@
       </AuditTrailEntry>
       <AuditTrailEntry>
         <Data/>
-        <WorkflowModelElement>C</WorkflowModelElement>
-        <EventType>complete</EventType>
-        <Timestamp/>
-        <Originator/>
-      </AuditTrailEntry>
-      <AuditTrailEntry>
-        <Data/>
-        <WorkflowModelElement>E</WorkflowModelElement>
-        <EventType>complete</EventType>
-        <Timestamp/>
-        <Originator/>
-      </AuditTrailEntry>
-      <AuditTrailEntry>
-        <Data/>
-        <WorkflowModelElement>B</WorkflowModelElement>
-        <EventType>complete</EventType>
-        <Timestamp/>
-        <Originator/>
-      </AuditTrailEntry>
-      <AuditTrailEntry>
-        <Data/>
         <WorkflowModelElement>F</WorkflowModelElement>
         <EventType>complete</EventType>
         <Timestamp/>
@@ -141,6 +120,27 @@
       <AuditTrailEntry>
         <Data/>
         <WorkflowModelElement>G</WorkflowModelElement>
+        <EventType>complete</EventType>
+        <Timestamp/>
+        <Originator/>
+      </AuditTrailEntry>
+      <AuditTrailEntry>
+        <Data/>
+        <WorkflowModelElement>B</WorkflowModelElement>
+        <EventType>complete</EventType>
+        <Timestamp/>
+        <Originator/>
+      </AuditTrailEntry>
+      <AuditTrailEntry>
+        <Data/>
+        <WorkflowModelElement>C</WorkflowModelElement>
+        <EventType>complete</EventType>
+        <Timestamp/>
+        <Originator/>
+      </AuditTrailEntry>
+      <AuditTrailEntry>
+        <Data/>
+        <WorkflowModelElement>E</WorkflowModelElement>
         <EventType>complete</EventType>
         <Timestamp/>
         <Originator/>

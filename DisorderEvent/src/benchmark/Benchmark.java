@@ -12,6 +12,7 @@ import org.xml.sax.SAXException;
 
 import benchmark.data.BenchmarkResult;
 import repairalgorithm.RepairAlgorithm;
+import repairalgorithm.RepairResult;
 import repairalgorithm.alignmentalgorithm.Alignment_Astar;
 import repairalgorithm.newalgorithm.NewAlgorithm;
 import data.EventLog;
@@ -80,12 +81,10 @@ public class Benchmark {
     */
 	private static BenchmarkResult test(RepairAlgorithm repairAlgorithm,
 			PetriNet petriNet, EventLog eventLog, EventLog wrongEventLog) {
-		BenchmarkResult result = new BenchmarkResult();
-		Date d1 = new Date();
-		EventLog repairedEventLog = repairAlgorithm.repair(petriNet, wrongEventLog);
-		Date d2 = new Date();
-		result.setTime(d2.getTime() - d1.getTime());
-		float accuracy = EventLogUtil.calcuateAccuracy(repairedEventLog, eventLog);
+		BenchmarkResult result = new BenchmarkResult();		
+		RepairResult repairResult = repairAlgorithm.repair(petriNet, wrongEventLog);		
+		result.setTime(repairResult.getTime());
+		float accuracy = EventLogUtil.calcuateAccuracy(repairResult.getEventLog(), eventLog);
 		result.setAccuracy(accuracy);
 		return result;
 	}
@@ -93,8 +92,8 @@ public class Benchmark {
 	public static void main(String agrs[]) throws IOException, ParserConfigurationException, SAXException
 	{
 	    RepairAlgorithm  repairAlgorithm =new Alignment_Astar();
-		String modelFile = "data/model/InvTask1.pnml";
-		String logFile = "data/log/InvTask1.mxml";
+		String modelFile = "data/model/Shortloop3.pnml";
+		String logFile = "data/log/Shortloop3.mxml";
 		testSingleFile(repairAlgorithm,modelFile, logFile);
 	}
 
