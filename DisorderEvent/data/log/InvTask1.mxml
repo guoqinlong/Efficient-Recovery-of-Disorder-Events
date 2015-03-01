@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<WorkflowLog description="Test log for decision miner">
+  <Source program="LogGenerator, Tsinghua, ISE">
+    <Data>
+      <Attribute name="info">LogGenerator, Tsinghua, ISE</Attribute>
+    </Data>
+  </Source>
+  <Process id="0" description="">
+　   <ProcessInstance id="case_1" description="">
+      <AuditTrailEntry>
+        <Data/>
+        <WorkflowModelElement>T3</WorkflowModelElement>
+        <EventType>complete</EventType>
+        <Timestamp/>
+        <Originator/>
+      </AuditTrailEntry>
+      <AuditTrailEntry>
+        <Data/>
+        <WorkflowModelElement>T1</WorkflowModelElement>
+        <EventType>complete</EventType>
+        <Timestamp/>
+        <wOriginator/>
+      </AuditTrailEntry>
+      <AuditTrailEntry>
+        <Data/>
+        <WorkflowModelElement>T4</WorkflowModelElement>
+        <EventType>complete</EventType>
+        <Timestamp/>
+        <Originator/>
+      </AuditTrailEntry>
+    </ProcessInstance>　　　    
+    <ProcessInstance id="case_2" description="">
+      <AuditTrailEntry>
+        <Data/>
+        <WorkflowModelElement>T3</WorkflowModelElement>
+        <EventType>complete</EventType>
+        <Timestamp/>
+        <Originator/>
+      </AuditTrailEntry>
+      <AuditTrailEntry>
+        <Data/>
+        <WorkflowModelElement>T4</WorkflowModelElement>
+        <EventType>complete</EventType>
+        <Timestamp/>
+        <wOriginator/>
+      </AuditTrailEntry>
+    </ProcessInstance>　　　 
+  </Process>
+</WorkflowLog>
