@@ -10,42 +10,42 @@
 　   <ProcessInstance id="case_1" description="">
       <AuditTrailEntry>
         <Data/>
-        <WorkflowModelElement>A</WorkflowModelElement>
+        <WorkflowModelElement>trans_5</WorkflowModelElement>
         <EventType>complete</EventType>
         <Timestamp/>
         <Originator/>
       </AuditTrailEntry>
       <AuditTrailEntry>
         <Data/>
-        <WorkflowModelElement>B</WorkflowModelElement>
+        <WorkflowModelElement>trans_4</WorkflowModelElement>
         <EventType>complete</EventType>
         <Timestamp/>
         <wOriginator/>
       </AuditTrailEntry>
       <AuditTrailEntry>
         <Data/>
-        <WorkflowModelElement>F</WorkflowModelElement>
+        <WorkflowModelElement>trans_1</WorkflowModelElement>
         <EventType>complete</EventType>
         <Timestamp/>
         <Originator/>
       </AuditTrailEntry>
       <AuditTrailEntry>
         <Data/>
-        <WorkflowModelElement>B</WorkflowModelElement>
+        <WorkflowModelElement>trans_4</WorkflowModelElement>
         <EventType>complete</EventType>
         <Timestamp/>
         <Originator/>
       </AuditTrailEntry>
       <AuditTrailEntry>
         <Data/>
-        <WorkflowModelElement>C</WorkflowModelElement>
+        <WorkflowModelElement>trans_3</WorkflowModelElement>
         <EventType>complete</EventType>
         <Timestamp/>
         <Originator/>
       </AuditTrailEntry>
     　　<AuditTrailEntry>
         <Data/>
-        <WorkflowModelElement>E</WorkflowModelElement>
+        <WorkflowModelElement>trans_2</WorkflowModelElement>
         <EventType>complete</EventType>
         <Timestamp/>
         <Originator/>
@@ -54,28 +54,28 @@
     <ProcessInstance id="case_0" description="">
       <AuditTrailEntry>
         <Data/>
-        <WorkflowModelElement>A</WorkflowModelElement>
+        <WorkflowModelElement>trans_5</WorkflowModelElement>
         <EventType>complete</EventType>
         <Timestamp/>
         <Originator/>
       </AuditTrailEntry>
       <AuditTrailEntry>
         <Data/>
-        <WorkflowModelElement>B</WorkflowModelElement>
+        <WorkflowModelElement>trans_4</WorkflowModelElement>
         <EventType>complete</EventType>
         <Timestamp/>
         <Originator/>
       </AuditTrailEntry>
       <AuditTrailEntry>
         <Data/>
-        <WorkflowModelElement>C</WorkflowModelElement>
+        <WorkflowModelElement>trans_3</WorkflowModelElement>
         <EventType>complete</EventType>
         <Timestamp/>
         <Originator/>
       </AuditTrailEntry>
       <AuditTrailEntry>
         <Data/>
-        <WorkflowModelElement>E</WorkflowModelElement>
+        <WorkflowModelElement>trans_2</WorkflowModelElement>
         <EventType>complete</EventType>
         <Timestamp/>
         <Originator/>
@@ -84,63 +84,63 @@
     <ProcessInstance id="case_2" description="">
       <AuditTrailEntry>
         <Data/>
-        <WorkflowModelElement>A</WorkflowModelElement>
+        <WorkflowModelElement>trans_5</WorkflowModelElement>
         <EventType>complete</EventType>
         <Timestamp/>
         <Originator/>
       </AuditTrailEntry>
       <AuditTrailEntry>
         <Data/>
-        <WorkflowModelElement>B</WorkflowModelElement>
+        <WorkflowModelElement>trans_4</WorkflowModelElement>
         <EventType>complete</EventType>
         <Timestamp/>
         <Originator/>
       </AuditTrailEntry>
       <AuditTrailEntry>
         <Data/>
-        <WorkflowModelElement>F</WorkflowModelElement>
+        <WorkflowModelElement>trans_1</WorkflowModelElement>
         <EventType>complete</EventType>
         <Timestamp/>
         <Originator/>
       </AuditTrailEntry>
       <AuditTrailEntry>
         <Data/>
-        <WorkflowModelElement>B</WorkflowModelElement>
+        <WorkflowModelElement>trans_4</WorkflowModelElement>
         <EventType>complete</EventType>
         <Timestamp/>
         <Originator/>
       </AuditTrailEntry>
       <AuditTrailEntry>
         <Data/>
-        <WorkflowModelElement>C</WorkflowModelElement>
+        <WorkflowModelElement>trans_3</WorkflowModelElement>
         <EventType>complete</EventType>
         <Timestamp/>
         <Originator/>
       </AuditTrailEntry>
       <AuditTrailEntry>
         <Data/>
-        <WorkflowModelElement>G</WorkflowModelElement>
+        <WorkflowModelElement>trans_0</WorkflowModelElement>
         <EventType>complete</EventType>
         <Timestamp/>
         <Originator/>
       </AuditTrailEntry>
       <AuditTrailEntry>
         <Data/>
-        <WorkflowModelElement>B</WorkflowModelElement>
+        <WorkflowModelElement>trans_4</WorkflowModelElement>
         <EventType>complete</EventType>
         <Timestamp/>
         <Originator/>
       </AuditTrailEntry>
       <AuditTrailEntry>
         <Data/>
-        <WorkflowModelElement>C</WorkflowModelElement>
+        <WorkflowModelElement>trans_3</WorkflowModelElement>
         <EventType>complete</EventType>
         <Timestamp/>
         <Originator/>
       </AuditTrailEntry>
       <AuditTrailEntry>
         <Data/>
-        <WorkflowModelElement>E</WorkflowModelElement>
+        <WorkflowModelElement>trans_2</WorkflowModelElement>
         <EventType>complete</EventType>
         <Timestamp/>
         <Originator/>

@@ -32,8 +32,8 @@ public class NewAlgorithm extends Alignment_Astar{
 		while (openTable.size() > 0)
 		{
 			NewAlgorithmSearchNode headNode = openTable.poll();
-			
-			if (!isFirstTrace && headNode.getRealValue() > bestValue)															//In case of dead-loop. As long as the current real value has exceed the best Value, discard it. 
+//			System.out.println(headNode);
+			if (!isFirstTrace && headNode.getfValue() > bestValue)															//In case of dead-loop. As long as the current real value has exceed the best Value, discard it. 
 				continue;
 			if (headNode.completeRepiar())
 			{
@@ -43,6 +43,7 @@ public class NewAlgorithm extends Alignment_Astar{
 			List<NewAlgorithmSearchNode> childNodes = expand(headNode, transitionInfo);
 			for (NewAlgorithmSearchNode childNode	:	childNodes)
 			{
+
 				//evaluate the f of childNode
 				if (openTable.contains(childNode))
 				{
@@ -66,7 +67,7 @@ public class NewAlgorithm extends Alignment_Astar{
 			closeTable.add(headNode);			
 			Collections.sort(openTable);
 		}
-//		System.out.println("CloseTable Size:\t"+closeTable.size());
+		System.out.println("CloseTable Size:\t"+closeTable.size());
 		return bestTrace;
 	}
 
@@ -83,7 +84,8 @@ public class NewAlgorithm extends Alignment_Astar{
 	    	RepairResult result = new RepairResult();
 			EventLog ret = new EventLog();
 			
-			HashMap<Transition, TransitionInfo> transitionInfo = TransitionInfo.calculateTransitionInfos(petriNet);						
+			HashMap<Transition, TransitionInfo> transitionInfo = TransitionInfo.calculateTransitionInfos(petriNet);					
+			System.out.println(transitionInfo);
 			HashMap<String,Transition> transitionNameMap= ModelUtil.getTransitionNameMap(petriNet);
 			Date d1 = new Date();
 			for (Trace originalTrace	:	eventLog)
@@ -111,6 +113,8 @@ public class NewAlgorithm extends Alignment_Astar{
 		 * @return
 		 */
 		protected List<NewAlgorithmSearchNode> expand(NewAlgorithmSearchNode headNode, HashMap<Transition, TransitionInfo> transitionInfo) {
+//			System.out.println(headNode);
+			
 			List<NewAlgorithmSearchNode> ret = new LinkedList<NewAlgorithmSearchNode>();			
 						
 			List<Transition> nowFirableTransitions = headNode.getFirableTransitions();
@@ -122,9 +126,12 @@ public class NewAlgorithm extends Alignment_Astar{
 				NewAlgorithmSearchNode newNode = headNode.clone();
 				
 				newNode.fire(transition);
-				newNode.updateTrace(transition);
-				newNode.updateFValue();
-
+				//Special case for invisible task: the invisible transition cannot update trace(invisible task does not appear in the trace!), and therefore it cannot  update FValue(fValue, the  lcs of repaired trace and original trace, only depends on the status of trace)
+				if (!transition.isInvisibleTask())
+				{
+					newNode.updateTrace(transition);
+					newNode.updateFValue(transition);
+				}
 				ret.add(newNode);
 			}
 			return ret;

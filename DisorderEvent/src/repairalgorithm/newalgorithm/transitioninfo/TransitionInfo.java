@@ -114,8 +114,9 @@ public class TransitionInfo
 			HashMap<Transition, TransitionInfo> ret) 
 	{
 		HashSet<Transition> closeTransitions = new HashSet<Transition>();
-		List<Place> initialMarkings = ModelUtil.getIntialMarking(petriNet);		
-		for (Transition	t:	petriNet.getTransitions())
+		List<Place> initialMarkings = ModelUtil.getIntialMarking(petriNet);
+		List<Transition> firableTransitions = ModelUtil.getFirableTransitions(petriNet, initialMarkings);
+		for (Transition	t	:	firableTransitions)
 		{
 			List<Transition> visitedTransitions = new LinkedList<Transition>();
 			

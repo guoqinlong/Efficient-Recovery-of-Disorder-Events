@@ -105,7 +105,7 @@ public class Alignment_Astar extends RepairAlgorithm{
 			closeTable.add(headNode);
 			Collections.sort(openTable);			
 		}				
-		//System.out.println("CloseTable Size:\t"+closeTable.size());
+		System.out.println("CloseTable Size:\t"+closeTable.size());
 		//System.out.println(closeTable);
 		return bestTrace;
 	}

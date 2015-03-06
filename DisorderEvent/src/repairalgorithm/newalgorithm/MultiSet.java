@@ -15,7 +15,10 @@ public class MultiSet<T> implements Collection<T> {
 	
 	@Override
 	public int size() {
-		throw new UnsupportedOperationException();		
+		int ret = 0;
+		for (Integer i	:	content.values())
+			ret += i;
+		return ret;
 	}
 
 	@Override

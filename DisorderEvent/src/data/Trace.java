@@ -80,8 +80,14 @@ public class Trace implements Iterable<String> {
 		return traceContent.iterator();
 	}
 	
+	public String getLastEvent() {
+		return traceContent.getLast();		
+	}
+	
 	public LinkedList<String> getTraceContent() { return traceContent; }
 
 	public void setTraceContent(LinkedList<String> traceContent) { this.traceContent = traceContent; }
+
+	
 
 }

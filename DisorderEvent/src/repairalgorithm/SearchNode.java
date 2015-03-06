@@ -197,6 +197,21 @@ public class SearchNode implements Comparable<SearchNode>
 		return ret.toString();
 	}
 	
+	@Override
+	public boolean equals(Object o)
+	{
+		if (!(o instanceof SearchNode))
+			return false;
+		SearchNode node = (SearchNode) o;		
+		
+		return this.markings.equals(node.markings)
+				&& this.tracePos == (node.tracePos)
+				&& this.currentTrace.equals(node.tracePos)
+				&& this.petriNet.equals(node.petriNet)
+				&& this.originalTrace.equals(node.originalTrace)
+				&& this.transitionNameMap.equals(node.transitionNameMap);		
+	}
+	
 	public int getRealValue() { return realValue; }
 	public void setRealValue(int realValue) { 	this.realValue = realValue; }
 

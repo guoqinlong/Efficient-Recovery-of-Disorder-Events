@@ -91,7 +91,7 @@ public class Benchmark {
 	
 	public static void main(String agrs[]) throws IOException, ParserConfigurationException, SAXException
 	{
-	    RepairAlgorithm  repairAlgorithm =new Alignment_Astar();
+	    RepairAlgorithm  repairAlgorithm =new NewAlgorithm();
 		String modelFile = "data/model/Shortloop3.pnml";
 		String logFile = "data/log/Shortloop3.mxml";
 		testSingleFile(repairAlgorithm,modelFile, logFile);

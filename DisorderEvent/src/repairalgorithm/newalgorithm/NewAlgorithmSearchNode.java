@@ -1,8 +1,10 @@
 package repairalgorithm.newalgorithm;
 
+import java.awt.Point;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -13,25 +15,55 @@ import org.processmining.framework.models.petrinet.Transition;
 import data.Trace;
 import repairalgorithm.SearchNode;
 import repairalgorithm.newalgorithm.transitioninfo.TransitionInfo;
+import util.DataUtil;
 
 /**
  * Search node used for new algorithm
  * 
  * Compared with the traditional one:
  * 1. Add leftNodes, those nodes means that does  match before.
+ * 2. Using ~Longest Common SubSequence~ as the cost Function.
  * 
  * @author qinlongguo
  *
  */
 public class NewAlgorithmSearchNode extends SearchNode {
-	MultiSet<String> unusedTransitions;
+	MultiSet<String> unusedEventNames;
+	LinkedList<Integer>	 visitedPositions;								//1. visited positions of Trace Events.							
+	LinkedList<Point> lis;																//2. longestIncreaseSubsequence, where x means the position, and y means the left count
+	HashMap<String, LinkedList<Integer>> eventPositions;			//3. position of each event in the trace, for case of duplicate event name in trace, the position for each name is stored as a list.
+																											//3=>This event Positions would be updated by the transitions, when an event is added into the variable current transition, we could update the trace.
 	
 	public NewAlgorithmSearchNode(PetriNet petriNet, Trace originalTrace,
 			HashMap<String, Transition> transitionNameMap) {
 		super(petriNet, originalTrace, transitionNameMap);		
-		unusedTransitions = new MultiSet<String>();		
+		unusedEventNames = new MultiSet<String>();
+		lis = new LinkedList<Point>();
+		visitedPositions = new LinkedList<Integer>();
+		eventPositions = getEventPositions(originalTrace);
 	}
 	
+	/**
+	 * 
+	 * get position of each event in the trace
+	 * 
+	 * @param originalTrace
+	 * @return
+	 */
+	private HashMap<String, LinkedList<Integer>> getEventPositions(Trace originalTrace) {
+		HashMap<String, LinkedList<Integer>> ret = new HashMap<String, LinkedList<Integer>>();
+		for (int i=0; i<originalTrace.length(); i++)
+		{
+			String event = originalTrace.getEvent(i);
+			LinkedList<Integer> positions = ret.get(event);
+			if (positions == null)
+				positions = new LinkedList<Integer>();
+			positions.add(i);
+			ret.put(event, positions);
+		}			
+		return ret;
+	}
+
 	public NewAlgorithmSearchNode clone()
 	{
 		NewAlgorithmSearchNode ret = new NewAlgorithmSearchNode(this.petriNet, this.originalTrace, this.transitionNameMap);
@@ -40,7 +72,10 @@ public class NewAlgorithmSearchNode extends SearchNode {
 		ret.realValue = this.realValue;
 		ret.tracePos = this.tracePos;
 		ret.currentTrace =(Trace) this.currentTrace.clone();
-		ret.unusedTransitions = (MultiSet<String>) this.unusedTransitions.clone();
+		ret.unusedEventNames = (MultiSet<String>) this.unusedEventNames.clone();
+		ret.visitedPositions = (LinkedList<Integer>) this.visitedPositions.clone(); 
+		ret.lis = (LinkedList<Point>) this.lis.clone();							
+		ret.eventPositions = DataUtil.cloneEventPositions(this.eventPositions);		// clone is shallow copy, this method is deep copy
 		return ret;
 	}
 
@@ -102,7 +137,7 @@ public class NewAlgorithmSearchNode extends SearchNode {
 	 */
 	private MultiSet<String> getLeftTransitions() {
 		MultiSet<String> ret = new MultiSet<String>();
-		ret.addAll(unusedTransitions);
+		ret.addAll(unusedEventNames);
 		for (int i=tracePos; i<originalTrace.length(); i++)		
 		{
 			String eventName = originalTrace.getEvent(i);
@@ -117,18 +152,16 @@ public class NewAlgorithmSearchNode extends SearchNode {
 	 * 2. the transition is at trace pos, just move trace.
 	 * 3. the transition is after trace pos, move the trace pos, and add the within transitions in the leftNodes.
 	 * 
-	 *  special case for invisible task: invisible task should affect the left transitions...
+	 *  special case for invisible task: invisible task should not affect the left transitions..., since the left transitions are calculated by event logs.
 	 *  
 	 * @param transition
 	 */
 	public void updateTrace(Transition transition) 
 	{
-		if (transition.isInvisibleTask())
-			return;
 		String transitionName = transition.getIdentifier();
-		if (unusedTransitions.contains(transitionName))
+		if (unusedEventNames.contains(transitionName))
 		{
-			unusedTransitions.remove(transitionName);
+			unusedEventNames.remove(transitionName);
 		}
 		else if (getNowTransition().equals(transition))
 		{
@@ -138,7 +171,7 @@ public class NewAlgorithmSearchNode extends SearchNode {
 		{
 			int index = originalTrace.indexOf(transitionName, tracePos);
 			for (int i=tracePos; i<index; i++)
-				unusedTransitions.add(originalTrace.getEvent(i));
+				unusedEventNames.add(originalTrace.getEvent(i));
 			tracePos = index+1;
 		}		
 	}
@@ -150,9 +183,17 @@ public class NewAlgorithmSearchNode extends SearchNode {
 		ret.append(super.toString());
 		
 		ret.append("unusedTransitions\t:\t");
-		ret.append(unusedTransitions.toString());
+		ret.append(unusedEventNames.toString());
 		ret.append("\n");		
 		
+		ret.append("visitedPositions\t:\t");
+		ret.append(visitedPositions.toString());
+		ret.append("\n");		
+		
+		ret.append("eventPositions\t:\t");
+		ret.append(eventPositions.toString());
+		ret.append("\n");		
+				
 		return ret.toString();
 	}
 
@@ -166,5 +207,75 @@ public class NewAlgorithmSearchNode extends SearchNode {
 	{
 		MultiSet<String> leftTransitions = getLeftTransitions();
 		return leftTransitions.isEmpty();
-	}
+	}	
+	
+	/**
+	 * update the fValue by using the  visitedPositions, and lis, the ~Longest Common Subsequence~ Method
+	 */
+	public void updateFValue(Transition lastExcutedTransition) 
+	{				
+		//1.  get last Fire event and its positions		
+		//2.  insert it into the visitedPositions,  
+		//3.  update the lis
+		//3.1 update position in an existing point
+		//3.2 append position to the end. 
+		//4.  and calculate the fValue
+		
+		//1.
+		String event = lastExcutedTransition.getIdentifier();		
+		LinkedList<Integer> positions = eventPositions.get(event);
+		int position = positions.poll();		
+		
+		//2.
+		Iterator<Integer> vIterator = visitedPositions.iterator();
+		int pos = 0;
+		int left = 0;			// it means how many elements are smaller than 'position' in the visitedPositions ..
+		while (vIterator.hasNext())
+		{
+			Integer value = vIterator.next();			
+			if (value > position)
+				break;
+			left++;
+		}
+		visitedPositions.add(left, position);
+		
+		//3.		
+		int leftEventSize = getLeftTransitions().size();
+		Iterator<Point> lIterator = lis.iterator();
+		boolean needAppend = true;
+		while (lIterator.hasNext())
+		{
+			Point point = lIterator.next();
+			if (point.x <position)	//	For the position in the left part, the length of possible LCS  should minus 1; 
+			{
+				point.y = Math.max(point.y-1, 0);				
+			}
+			else
+			{
+				point.x = position;				
+				point.y = leftEventSize - (position - left);
+				needAppend = false;
+			}
+		}
+		if (needAppend)
+		{
+			Point p = new Point();
+			p.x = position;			
+			p.y = leftEventSize - (position - left);
+			lis.add(p);
+		}
+		//4.		
+		int newFValue = Math.max(leftEventSize, lis.size());		//the lcs is in the leftEvent, or the lcs is now lis 
+		lIterator = lis.iterator();		
+		int lisLength = 1;
+		while (lIterator.hasNext())
+		{
+			Point p = lIterator.next();
+			newFValue = Math.max(p.y+lisLength, newFValue);
+			lisLength ++;
+		}
+		newFValue = originalTrace.length() - newFValue;
+		//last Step!
+		fValue = newFValue;
+	}		
 }

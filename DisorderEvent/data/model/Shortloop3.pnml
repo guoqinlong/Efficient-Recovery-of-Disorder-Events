@@ -1,278 +1,456 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<pnml>
-<net id="workflownet" type="http://www.informatik.hu-berlin.de/top/pnml/basicPNML.rng">
-    <place id="place_0">
-        <graphics>
-            <position x="340" y="73" />
-            <dimension x="13" y="13" />
-        </graphics>
-        <name>
-            <text>P5</text>
-         </name>
-    </place>
-    <place id="place_1">
-        <graphics>
-            <position x="258" y="73" />
-            <dimension x="13" y="13" />
-        </graphics>
-        <name>
-            <text>P3</text>
-         </name>
-    </place>
-    <place id="place_2">
-        <graphics>
-            <position x="178" y="93" />
-            <dimension x="13" y="13" />
-        </graphics>
-        <name>
-            <text>P2</text>
-         </name>
-    </place>
-    <place id="place_3">
-        <graphics>
-            <position x="98" y="58" />
-            <dimension x="13" y="13" />
-        </graphics>
-        <name>
-            <text>P1</text>
-         </name>
-    </place>
-    <place id="place_4">
-        <graphics>
-            <position x="16" y="58" />
-            <dimension x="13" y="13" />
-        </graphics>
-        <name>
-            <text>P0</text>
-         </name>
-    </place>
-    <transition id="trans_0">
-        <graphics>
-            <position  x="299" y="30" />
-            <dimension x="22" y="17" />
-        </graphics>
-        <name>
-            <text>G</text>
-         </name>
-        <toolspecific tool="ProM" version="5.2">
+<?xml version="1.0" encoding="utf-8"?>
+
+<pnml> 
+  <net id="Net-One" type="P/T net"> 
+    <token id="Default" enabled="true" red="0" green="0" blue="0"/>  
+    <place id="place_0"> 
+      <graphics> 
+        <position x="660.0" y="225.0"/> 
+      </graphics>  
+      <name> 
+        <value>place_0</value>  
+        <graphics> 
+          <offset x="0.0" y="0.0"/> 
+        </graphics> 
+      </name>  
+      <initialMarking> 
+        <value>Default,0</value>  
+        <graphics> 
+          <offset x="0.0" y="0.0"/> 
+        </graphics> 
+      </initialMarking>  
+      <capacity> 
+        <value>0</value> 
+      </capacity> 
+    </place>  
+    <place id="place_1"> 
+      <graphics> 
+        <position x="495.0" y="225.0"/> 
+      </graphics>  
+      <name> 
+        <value>place_1</value>  
+        <graphics> 
+          <offset x="0.0" y="0.0"/> 
+        </graphics> 
+      </name>  
+      <initialMarking> 
+        <value>Default,0</value>  
+        <graphics> 
+          <offset x="0.0" y="0.0"/> 
+        </graphics> 
+      </initialMarking>  
+      <capacity> 
+        <value>0</value> 
+      </capacity> 
+    </place>  
+    <place id="place_2"> 
+      <graphics> 
+        <position x="360.0" y="225.0"/> 
+      </graphics>  
+      <name> 
+        <value>place_2</value>  
+        <graphics> 
+          <offset x="0.0" y="0.0"/> 
+        </graphics> 
+      </name>  
+      <initialMarking> 
+        <value>Default,0</value>  
+        <graphics> 
+          <offset x="0.0" y="0.0"/> 
+        </graphics> 
+      </initialMarking>  
+      <capacity> 
+        <value>0</value> 
+      </capacity> 
+    </place>  
+    <place id="place_3"> 
+      <graphics> 
+        <position x="210.0" y="225.0"/> 
+      </graphics>  
+      <name> 
+        <value>place_3</value>  
+        <graphics> 
+          <offset x="0.0" y="0.0"/> 
+        </graphics> 
+      </name>  
+      <initialMarking> 
+        <value>Default,0</value>  
+        <graphics> 
+          <offset x="0.0" y="0.0"/> 
+        </graphics> 
+      </initialMarking>  
+      <capacity> 
+        <value>0</value> 
+      </capacity> 
+    </place>  
+    <place id="place_4"> 
+      <graphics> 
+        <position x="50.0" y="225.0"/> 
+      </graphics>  
+      <name> 
+        <value>place_4</value>  
+        <graphics> 
+          <offset x="0.0" y="0.0"/> 
+        </graphics> 
+      </name>  
+      <initialMarking> 
+        <value>Default,0</value>  
+        <graphics> 
+          <offset x="0.0" y="0.0"/> 
+        </graphics> 
+      </initialMarking>  
+      <capacity> 
+        <value>0</value> 
+      </capacity> 
+    </place>  
+    <transition id="trans_0"> 
+      <graphics> 
+        <position x="300.0" y="30.0"/> 
+      </graphics>  
+      <name> 
+        <value>trans_0</value>  
+        <graphics> 
+          <offset x="0.0" y="0.0"/> 
+        </graphics> 
+      </name>  
+       <toolspecific tool="ProM" version="5.2">
             <logevent>
                 <name> None</name>
                 <type> None</type>
             </logevent>
         </toolspecific>
-    </transition>
-    <transition id="trans_1">
-        <graphics>
-            <position  x="218" y="58" />
-            <dimension x="20" y="17" />
-        </graphics>
-        <name>
-            <text>F</text>
-         </name>
-        <toolspecific tool="ProM" version="5.2">
+      <orientation> 
+        <value>0</value> 
+      </orientation>  
+      <rate> 
+        <value>1.0</value> 
+      </rate>  
+      <timed> 
+        <value>false</value> 
+      </timed>  
+      <infiniteServer> 
+        <value>false</value> 
+      </infiniteServer>  
+      <priority> 
+        <value>1</value> 
+      </priority> 
+    </transition>  
+    <transition id="trans_1"> 
+      <graphics> 
+        <position x="300.0" y="150.0"/> 
+      </graphics>  
+      <name> 
+        <value>trans_1</value>  
+        <graphics> 
+          <offset x="0.0" y="0.0"/> 
+        </graphics> 
+      </name>  
+       <toolspecific tool="ProM" version="5.2">
             <logevent>
                 <name> None</name>
                 <type> None</type>
             </logevent>
         </toolspecific>
-    </transition>
-    <transition id="trans_2">
-        <graphics>
-            <position  x="299" y="73" />
-            <dimension x="22" y="17" />
-        </graphics>
-        <name>
-            <text>E</text>
-         </name>
-        <toolspecific tool="ProM" version="5.2">
+      <orientation> 
+        <value>0</value> 
+      </orientation>  
+      <rate> 
+        <value>1.0</value> 
+      </rate>  
+      <timed> 
+        <value>false</value> 
+      </timed>  
+      <infiniteServer> 
+        <value>false</value> 
+      </infiniteServer>  
+      <priority> 
+        <value>1</value> 
+      </priority> 
+    </transition>  
+    <transition id="trans_2"> 
+      <graphics> 
+        <position x="570.0" y="225.0"/> 
+      </graphics>  
+      <name> 
+        <value>trans_2</value>  
+        <graphics> 
+          <offset x="0.0" y="0.0"/> 
+        </graphics> 
+      </name>  
+       <toolspecific tool="ProM" version="5.2">
             <logevent>
                 <name> None</name>
                 <type> None</type>
             </logevent>
         </toolspecific>
-    </transition>
-    <transition id="trans_3">
-        <graphics>
-            <position  x="218" y="92" />
-            <dimension x="22" y="17" />
-        </graphics>
-        <name>
-            <text>C</text>
-         </name>
-        <toolspecific tool="ProM" version="5.2">
+      <orientation> 
+        <value>0</value> 
+      </orientation>  
+      <rate> 
+        <value>1.0</value> 
+      </rate>  
+      <timed> 
+        <value>false</value> 
+      </timed>  
+      <infiniteServer> 
+        <value>false</value> 
+      </infiniteServer>  
+      <priority> 
+        <value>1</value> 
+      </priority> 
+    </transition>  
+    <transition id="trans_3"> 
+      <graphics> 
+        <position x="420.0" y="225.0"/> 
+      </graphics>  
+      <name> 
+        <value>trans_3</value>  
+        <graphics> 
+          <offset x="0.0" y="0.0"/> 
+        </graphics> 
+      </name>  
+       <toolspecific tool="ProM" version="5.2">
             <logevent>
                 <name> None</name>
                 <type> None</type>
             </logevent>
         </toolspecific>
-    </transition>
-    <transition id="trans_4">
-        <graphics>
-            <position  x="138" y="94" />
-            <dimension x="22" y="17" />
-        </graphics>
-        <name>
-            <text>B</text>
-         </name>
-        <toolspecific tool="ProM" version="5.2">
+      <orientation> 
+        <value>0</value> 
+      </orientation>  
+      <rate> 
+        <value>1.0</value> 
+      </rate>  
+      <timed> 
+        <value>false</value> 
+      </timed>  
+      <infiniteServer> 
+        <value>false</value> 
+      </infiniteServer>  
+      <priority> 
+        <value>1</value> 
+      </priority> 
+    </transition>  
+    <transition id="trans_4"> 
+      <graphics> 
+        <position x="300.0" y="225.0"/> 
+      </graphics>  
+      <name> 
+        <value>trans_4</value>  
+        <graphics> 
+          <offset x="0.0" y="0.0"/> 
+        </graphics> 
+      </name>  
+       <toolspecific tool="ProM" version="5.2">
             <logevent>
                 <name> None</name>
                 <type> None</type>
             </logevent>
         </toolspecific>
-    </transition>
-    <transition id="trans_5">
-        <graphics>
-            <position  x="57" y="58" />
-            <dimension x="22" y="17" />
-        </graphics>
-        <name>
-            <text>A</text>
-         </name>
-        <toolspecific tool="ProM" version="5.2">
+      <orientation> 
+        <value>0</value> 
+      </orientation>  
+      <rate> 
+        <value>1.0</value> 
+      </rate>  
+      <timed> 
+        <value>false</value> 
+      </timed>  
+      <infiniteServer> 
+        <value>false</value> 
+      </infiniteServer>  
+      <priority> 
+        <value>1</value> 
+      </priority> 
+    </transition>  
+    <transition id="trans_5"> 
+      <graphics> 
+        <position x="120.0" y="225.0"/> 
+      </graphics>  
+      <name> 
+        <value>trans_5</value>  
+        <graphics> 
+          <offset x="0.0" y="0.0"/> 
+        </graphics> 
+      </name>  
+       <toolspecific tool="ProM" version="5.2">
             <logevent>
                 <name> None</name>
                 <type> None</type>
             </logevent>
         </toolspecific>
-    </transition>
-    <arc id="arc_0" source="trans_0" target="place_3">
-        <toolspecific tool="ProM" version="5.2">
-            <spline>
-                <point x="287" y="28" />
-                <point x="272" y="25" />
-                <point x="243" y="20" />
-                <point x="218" y="20" />
-                <point x="178" y="20" />
-                <point x="178" y="20" />
-                <point x="178" y="20" />
-                <point x="151" y="20" />
-                <point x="122" y="39" />
-                <point x="107" y="50" />
-                <end x="103" y="53" />
-            </spline>
-        </toolspecific>
-    </arc>
-    <arc id="arc_1" source="place_2" target="trans_3">
-        <toolspecific tool="ProM" version="5.2">
-            <spline>
-                <point x="185" y="93" />
-                <point x="190" y="93" />
-                <point x="196" y="93" />
-                <point x="202" y="93" />
-                <end x="207" y="92" />
-            </spline>
-        </toolspecific>
-    </arc>
-    <arc id="arc_2" source="place_1" target="trans_0">
-        <toolspecific tool="ProM" version="5.2">
-            <spline>
-                <point x="263" y="68" />
-                <point x="269" y="61" />
-                <point x="279" y="51" />
-                <point x="287" y="42" />
-                <end x="291" y="38" />
-            </spline>
-        </toolspecific>
-    </arc>
-    <arc id="arc_3" source="trans_3" target="place_1">
-        <toolspecific tool="ProM" version="5.2">
-            <spline>
-                <point x="229" y="87" />
-                <point x="234" y="84" />
-                <point x="241" y="81" />
-                <point x="247" y="78" />
-                <end x="252" y="76" />
-            </spline>
-        </toolspecific>
-    </arc>
-    <arc id="arc_4" source="trans_4" target="place_2">
-        <toolspecific tool="ProM" version="5.2">
-            <spline>
-                <point x="149" y="94" />
-                <point x="154" y="93" />
-                <point x="160" y="93" />
-                <point x="166" y="93" />
-                <end x="171" y="93" />
-            </spline>
-        </toolspecific>
-    </arc>
-    <arc id="arc_5" source="trans_1" target="place_3">
-        <toolspecific tool="ProM" version="5.2">
-            <spline>
-                <point x="207" y="58" />
-                <point x="185" y="58" />
-                <point x="133" y="58" />
-                <point x="110" y="58" />
-                <end x="105" y="58" />
-            </spline>
-        </toolspecific>
-    </arc>
-    <arc id="arc_6" source="place_4" target="trans_5">
-        <toolspecific tool="ProM" version="5.2">
-            <spline>
-                <point x="23" y="58" />
-                <point x="28" y="58" />
-                <point x="34" y="58" />
-                <point x="40" y="58" />
-                <end x="45" y="58" />
-            </spline>
-        </toolspecific>
-    </arc>
-    <arc id="arc_7" source="place_2" target="trans_1">
-        <toolspecific tool="ProM" version="5.2">
-            <spline>
-                <point x="184" y="88" />
-                <point x="190" y="84" />
-                <point x="198" y="76" />
-                <point x="205" y="69" />
-                <end x="209" y="66" />
-            </spline>
-        </toolspecific>
-    </arc>
-    <arc id="arc_8" source="trans_5" target="place_3">
-        <toolspecific tool="ProM" version="5.2">
-            <spline>
-                <point x="69" y="58" />
-                <point x="74" y="58" />
-                <point x="80" y="58" />
-                <point x="86" y="58" />
-                <end x="91" y="58" />
-            </spline>
-        </toolspecific>
-    </arc>
-    <arc id="arc_9" source="trans_2" target="place_0">
-        <toolspecific tool="ProM" version="5.2">
-            <spline>
-                <point x="310" y="73" />
-                <point x="315" y="73" />
-                <point x="322" y="73" />
-                <point x="328" y="73" />
-                <end x="333" y="73" />
-            </spline>
-        </toolspecific>
-    </arc>
-    <arc id="arc_10" source="place_3" target="trans_4">
-        <toolspecific tool="ProM" version="5.2">
-            <spline>
-                <point x="103" y="63" />
-                <point x="109" y="67" />
-                <point x="118" y="76" />
-                <point x="125" y="82" />
-                <end x="129" y="86" />
-            </spline>
-        </toolspecific>
-    </arc>
-    <arc id="arc_11" source="place_1" target="trans_2">
-        <toolspecific tool="ProM" version="5.2">
-            <spline>
-                <point x="265" y="73" />
-                <point x="270" y="73" />
-                <point x="277" y="73" />
-                <point x="283" y="73" />
-                <end x="288" y="73" />
-            </spline>
-        </toolspecific>
-    </arc>
-</net>
+      <orientation> 
+        <value>0</value> 
+      </orientation>  
+      <rate> 
+        <value>1.0</value> 
+      </rate>  
+      <timed> 
+        <value>false</value> 
+      </timed>  
+      <infiniteServer> 
+        <value>false</value> 
+      </infiniteServer>  
+      <priority> 
+        <value>1</value> 
+      </priority> 
+    </transition>  
+    <arc id="arc_0" source="trans_0" target="place_3"> 
+      <graphics/>  
+      <inscription> 
+        <value/>  
+        <graphics/> 
+      </inscription>  
+      <tagged> 
+        <value>false</value> 
+      </tagged>  
+      <arcpath id="000" x="312" y="57" curvePoint="false"/>  
+      <arcpath id="001" x="228" y="223" curvePoint="false"/>  
+      <type value="normal"/> 
+    </arc>  
+    <arc id="arc_1" source="place_2" target="trans_3"> 
+      <graphics/>  
+      <inscription> 
+        <value/>  
+        <graphics/> 
+      </inscription>  
+      <tagged> 
+        <value>false</value> 
+      </tagged>  
+      <arcpath id="000" x="386" y="237" curvePoint="false"/>  
+      <arcpath id="001" x="426" y="237" curvePoint="false"/>  
+      <type value="normal"/> 
+    </arc>  
+    <arc id="arc_10" source="place_3" target="trans_4"> 
+      <graphics/>  
+      <inscription> 
+        <value/>  
+        <graphics/> 
+      </inscription>  
+      <tagged> 
+        <value>false</value> 
+      </tagged>  
+      <arcpath id="000" x="236" y="238" curvePoint="false"/>  
+      <arcpath id="001" x="306" y="237" curvePoint="false"/>  
+      <type value="normal"/> 
+    </arc>  
+    <arc id="arc_11" source="place_1" target="trans_2"> 
+      <graphics/>  
+      <inscription> 
+        <value/>  
+        <graphics/> 
+      </inscription>  
+      <tagged> 
+        <value>false</value> 
+      </tagged>  
+      <arcpath id="000" x="521" y="237" curvePoint="false"/>  
+      <arcpath id="001" x="576" y="237" curvePoint="false"/>  
+      <type value="normal"/> 
+    </arc>  
+    <arc id="arc_2" source="place_1" target="trans_0"> 
+      <graphics/>  
+      <inscription> 
+        <value/>  
+        <graphics/> 
+      </inscription>  
+      <tagged> 
+        <value>false</value> 
+      </tagged>  
+      <arcpath id="000" x="496" y="226" curvePoint="false"/>  
+      <arcpath id="001" x="316" y="42" curvePoint="false"/>  
+      <type value="normal"/> 
+    </arc>  
+    <arc id="arc_3" source="trans_3" target="place_1"> 
+      <graphics/>  
+      <inscription> 
+        <value/>  
+        <graphics/> 
+      </inscription>  
+      <tagged> 
+        <value>false</value> 
+      </tagged>  
+      <arcpath id="000" x="436" y="237" curvePoint="false"/>  
+      <arcpath id="001" x="492" y="237" curvePoint="false"/>  
+      <type value="normal"/> 
+    </arc>  
+    <arc id="arc_4" source="trans_4" target="place_2"> 
+      <graphics/>  
+      <inscription> 
+        <value/>  
+        <graphics/> 
+      </inscription>  
+      <tagged> 
+        <value>false</value> 
+      </tagged>  
+      <arcpath id="000" x="316" y="237" curvePoint="false"/>  
+      <arcpath id="001" x="357" y="237" curvePoint="false"/>  
+      <type value="normal"/> 
+    </arc>  
+    <arc id="arc_5" source="trans_1" target="place_3"> 
+      <graphics/>  
+      <inscription> 
+        <value/>  
+        <graphics/> 
+      </inscription>  
+      <tagged> 
+        <value>false</value> 
+      </tagged>  
+      <arcpath id="000" x="306" y="162" curvePoint="false"/>  
+      <arcpath id="001" x="233" y="227" curvePoint="false"/>  
+      <type value="normal"/> 
+    </arc>  
+    <arc id="arc_6" source="place_4" target="trans_5"> 
+      <graphics/>  
+      <inscription> 
+        <value/>  
+        <graphics/> 
+      </inscription>  
+      <tagged> 
+        <value>false</value> 
+      </tagged>  
+      <arcpath id="000" x="76" y="237" curvePoint="false"/>  
+      <arcpath id="001" x="126" y="237" curvePoint="false"/>  
+      <type value="normal"/> 
+    </arc>  
+    <arc id="arc_7" source="place_2" target="trans_1"> 
+      <graphics/>  
+      <inscription> 
+        <value/>  
+        <graphics/> 
+      </inscription>  
+      <tagged> 
+        <value>false</value> 
+      </tagged>  
+      <arcpath id="000" x="363" y="224" curvePoint="false"/>  
+      <arcpath id="001" x="316" y="162" curvePoint="false"/>  
+      <type value="normal"/> 
+    </arc>  
+    <arc id="arc_8" source="trans_5" target="place_3"> 
+      <graphics/>  
+      <inscription> 
+        <value/>  
+        <graphics/> 
+      </inscription>  
+      <tagged> 
+        <value>false</value> 
+      </tagged>  
+      <arcpath id="000" x="136" y="237" curvePoint="false"/>  
+      <arcpath id="001" x="207" y="237" curvePoint="false"/>  
+      <type value="normal"/> 
+    </arc>  
+    <arc id="arc_9" source="trans_2" target="place_0"> 
+      <graphics/>  
+      <inscription> 
+        <value/>  
+        <graphics/> 
+      </inscription>  
+      <tagged> 
+        <value>false</value> 
+      </tagged>  
+      <arcpath id="000" x="586" y="237" curvePoint="false"/>  
+      <arcpath id="001" x="657" y="237" curvePoint="false"/>  
+      <type value="normal"/> 
+    </arc> 
+  </net> 
 </pnml>
+

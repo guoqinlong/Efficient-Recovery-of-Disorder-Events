@@ -46,7 +46,8 @@ public class EventLogUtil {
 		while(size > 0)
 		{
 //			int pos = (int) (Math.random() * size);
-			int pos = size-1;
+//			int pos = size-1;
+			int pos = 0;
 			String event = content.get(pos);
 			content.remove(pos);
 			ret.addEvent(event);			
